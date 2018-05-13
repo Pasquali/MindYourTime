@@ -11,3 +11,9 @@
     flex-direction: column;
     height: 94vh;
 }
+.title {
+    margin-top: 8px;
+}
+.toolBarIcon {
+    margin-top: 6px;
+}

@@ -11,12 +11,12 @@
 </mat-menu>
 
 <mat-toolbar class="flex" color="primary">
-  <button mat-icon-button (click)="isCollapsed = !isCollapsed; sideNav.toggle()">
+  <button mat-icon-button class="toolBarIcon" (click)="isCollapsed = !isCollapsed; sideNav.toggle()">
       <mat-icon [@iconChange]="isCollapsed">menu</mat-icon>
   </button>
-  <span>Mind Your Time</span>
+  <span class="title">Mind Your Time</span>
   <span class="fill-remaining-space"></span>
-  <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon></button>
+  <button mat-icon-button class="toolBarIcon" [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon></button>
 </mat-toolbar>
 
 

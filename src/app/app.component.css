@@ -1,0 +1,13 @@
+.card {
+    height: 94vh;
+    overflow: auto;
+    margin-bottom: 100px;
+    justify-content: center;
+}
+.routeContainer {
+    margin-bottom: 5px;   
+    /* margin-top: 40px; */
+    box-sizing: border-box;
+    flex-direction: column;
+    height: 94vh;
+}

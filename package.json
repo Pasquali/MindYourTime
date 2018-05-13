@@ -1,6 +1,6 @@
 {
-  "name": "yogaseed-employee-dashboard",
-  "version": "0.0.0",
+  "name": "mind-your-time",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

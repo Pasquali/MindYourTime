@@ -10,11 +10,25 @@
   </button>
 </mat-menu>
 
-<mat-toolbar class="toolbar flex" color="primary">
-  <button mat-icon-button (click)="isCollapsed = !isCollapsed">
+<mat-toolbar class="flex" color="primary">
+  <button mat-icon-button (click)="isCollapsed = !isCollapsed; sideNav.toggle()">
       <mat-icon [@iconChange]="isCollapsed">menu</mat-icon>
   </button>
-  <span>Yoga Seed</span>
+  <span>Mind Your Time</span>
   <span class="fill-remaining-space"></span>
   <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon></button>
 </mat-toolbar>
+
+
+<mat-drawer-container (backdropClick)="isCollapsed = !isCollapsed">
+  <mat-drawer #sideNav mode="over">
+    test damn
+  </mat-drawer>
+  <mat-drawer-content class="routeContainer">
+    <div class="flex">
+      <span class="fill-remaining-space"></span>
+      <span><mat-card><router-outlet></router-outlet></mat-card></span>
+      <span class="fill-remaining-space"></span>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

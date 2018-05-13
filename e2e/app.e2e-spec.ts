@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('yogaseed-employee-dashboard App', () => {
+describe('mind-your-time App', () => {
   let page: AppPage;
 
   beforeEach(() => {

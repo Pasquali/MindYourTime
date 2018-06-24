@@ -1,0 +1,33 @@
+.mat-card {
+    background-color: #363636;
+    color: gray;
+    width: 41%;
+    /* margin: 5px 0 0 5px; */
+    margin-top: 5px;
+    display: inline-block;
+    height: 90px;
+    text-align: center;
+    vertical-align: top;
+}
+.totalItem {
+    font-size: 3em;
+}
+.totalText {
+    margin-top: 15px;
+}
+.container {
+    /* left: -3px; */
+    /* width: 100%; */
+    height: 800px;
+    overflow-y: auto;
+}
+.chart {
+    margin-top:5px;
+    /* position: relative; */
+}
+.cards {
+    /* margin-left: 2%; */
+    /* position: relative; */
+    /* margin: auto; */
+
+}

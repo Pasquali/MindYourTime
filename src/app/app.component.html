@@ -1,34 +1,37 @@
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
+<mat-menu #accountMent="matMenu">
+  <a mat-menu-item routerLink="/account">
     <mat-icon>person</mat-icon>
 <!--      <button mat-raised-button [routerLink]="['/feedback']"></button>      -->
-    <span>My Account</span>
-  </button>
-  <button mat-menu-item>
+    <span>Account Settings</span>
+  </a>
+  <a mat-menu-item>
     <mat-icon>exit_to_app</mat-icon>
     <span>Logout</span>
-  </button>
+  </a>
 </mat-menu>
 
-<mat-toolbar class="flex" color="primary">
-  <button mat-icon-button class="toolBarIcon" (click)="isCollapsed = !isCollapsed; sideNav.toggle()">
-      <mat-icon [@iconChange]="isCollapsed">menu</mat-icon>
-  </button>
-  <span class="title">Mind Your Time</span>
+<mat-menu #siteMenu="matMenu">
+  <a mat-menu-item routerLink="/stats">
+    <mat-icon>bar_chart</mat-icon>
+<!--      <button mat-raised-button [routerLink]="['/feedback']"></button>      -->
+    <span>My Stats</span>
+  </a>
+  <a mat-menu-item routerLink="/timer">
+    <mat-icon>timer</mat-icon>
+    <span>Meditation Timer</span>
+  </a>
+</mat-menu>
+  
+<div class="flex">
   <span class="fill-remaining-space"></span>
-  <button mat-icon-button class="toolBarIcon" [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon></button>
-</mat-toolbar>
-
-
-<mat-drawer-container (backdropClick)="isCollapsed = !isCollapsed">
-  <mat-drawer #sideNav mode="over">
-    test damn
-  </mat-drawer>
-  <mat-drawer-content class="routeContainer">
-    <div class="flex">
-      <span class="fill-remaining-space"></span>
-      <mat-card class="card"><router-outlet></router-outlet></mat-card>
-      <span class="fill-remaining-space"></span>
-    </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+  <mat-card class="card">
+    <mat-card-header class="flex"> 
+      <button mat-icon-button class="menuIcon" [matMenuTriggerFor]="siteMenu"><mat-icon>menu</mat-icon></button>    
+        <span class="fill-remaining-space"></span>
+        <span class="fill-remaining-space"></span>
+      <button mat-icon-button class="accountIcon" [matMenuTriggerFor]="accountMent"><mat-icon>person</mat-icon></button>    
+    </mat-card-header>
+    <router-outlet></router-outlet>
+  </mat-card>
+  <span class="fill-remaining-space"></span>
+</div>

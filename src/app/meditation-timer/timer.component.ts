@@ -27,7 +27,7 @@ export class TimerComponent implements OnInit {
   timer; // the timeout object
   currentTime = 0; // the currentTime is in 10ths of a second
   state = 'expand';
-  totalTime = .1;
+  totalTime = 1;
   time;
   running = false; // Whether or not the timer is running
   timeString;
@@ -38,6 +38,9 @@ export class TimerComponent implements OnInit {
   finished = false;
   results = false;
   constructor() {
+  }
+  changeBreath(event) {
+    this.breathTimeSetting = event.value;
   }
   toggleBreathingCircle() {
     this.state = this.state === 'contract' ? 'expand' : 'contract';

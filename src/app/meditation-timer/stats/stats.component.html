@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="chart">
+    <app-chart></app-chart>
+  </div>
+  <div class="cards">
+    <span *ngIf="sessionBreaths > 0" class="flex">
+      <mat-card>
+        <div class="totalItem">
+          {{sessionBreaths}}
+        </div>
+        <div class="totalText">
+          Breaths taken this session
+        </div>
+      </mat-card>
+      <span class="fill-remaining-space"></span>      
+      <mat-card> 
+        <div class="totalItem">
+          {{sessionTime.minutes}}:{{sessionTime.seconds | number: '2.0-0'}}          
+        </div>
+        <div class="totalText">
+          Session Length
+        </div>
+      </mat-card>
+    </span>
+    <span class="flex">
+      <mat-card>
+        <div class="totalItem">
+          0
+        </div>
+        <div class="totalText">
+          Total Breaths Taken
+        </div>
+      </mat-card>
+      <span class="fill-remaining-space"></span>
+      <mat-card>
+        <div class="totalItem">
+            0
+        </div>
+        <div class="totalText">
+            Total Meditation Time
+        </div>
+      </mat-card>
+    </span>
+  </div>
+</div>

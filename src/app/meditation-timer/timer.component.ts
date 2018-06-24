@@ -27,7 +27,7 @@ export class TimerComponent implements OnInit {
   timer; // the timeout object
   currentTime = 0; // the currentTime is in 10ths of a second
   state = 'expand';
-  totalTime = .25;
+  totalTime = .1;
   time;
   running = false; // Whether or not the timer is running
   timeString;

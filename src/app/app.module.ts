@@ -29,6 +29,7 @@ const appRoutes: Routes = [{
   },
   { path: 'login', component: LoginComponent },
   { path: 'timer', component: TimerComponent },
+  { path: 'stats', component: FinishedResultsComponent },
 ];
 @NgModule({
   declarations: [

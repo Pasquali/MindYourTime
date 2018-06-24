@@ -1,20 +1,63 @@
 import { Component, OnInit } from '@angular/core';
+import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css']
+  styleUrls: ['./timer.component.css'],
+  animations: [
+    trigger('breathingCircle', [
+      state('expand',
+        style({
+          transform: 'scale( 1 )',
+          // height: '45px',
+          // width: '45px',
+      })),
+      state('contract',
+        style({
+          transform: 'scale( 1.8 )',
+          // height: '25px',
+          // width: '25px'
+        })),
+      transition('* <=> *', animate('{{time}}s'))
+    ])
+  ]
 })
 export class TimerComponent implements OnInit {
-  timer;
-  time = 0;
+  timer; // the timeout object
+  currentTime = 0; // the currentTime is in 10ths of a second
+  state = 'expand';
+  totalTime = 5;
+  time;
+  running = false; // Whether or not the timer is running
+  timeString;
+  minutes = 0;
+  seconds = 0;
+  breathTimeSetting = 5;
   constructor() {
-    this.startTimer();
+  }
+  toggleBreathingCircle() {
+    this.state = this.state === 'contract' ? 'expand' : 'contract';
+  }
+  pauseTimer() {
+    clearTimeout(this.timer);
   }
 
   startTimer() {
     this.timer = setTimeout(() => {
-      this.time += .1;
+      const breathTimer = this.currentTime % this.breathTimeSetting;
+      if ((breathTimer > 0 && breathTimer < .1)) {
+          this.toggleBreathingCircle();
+      }
+      if (this.time >= 75) {
+        clearTimeout(this.timer);
+        return;
+      }
+      this.currentTime += .1;
+      this.minutes = Math.floor(this.currentTime / 60);
+      this.seconds = this.currentTime - this.minutes * 60;
+      const percentage_of_total_time = this.currentTime / (this.totalTime * 60);
+      this.time = (percentage_of_total_time * 100) * .75;
       this.startTimer();
     }, 100);
   }

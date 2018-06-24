@@ -1,1 +1,15 @@
 <app-timer-progress [time]="time"></app-timer-progress>
+<div class="flex">
+    <span class="fill-remaining-space"></span>
+    <mat-icon class="person">person</mat-icon>
+    <span class="circle" [@breathingCircle]="{value: state, params:{time: breathTimeSetting}}"></span>
+    <span class="fill-remaining-space"></span>
+</div>
+
+<div class="container">
+    <div class="time">{{ minutes }}:{{ seconds | number: '2.0-0' }}</div>
+    <div class="time">Minutes Complete</div>
+    <button *ngIf="!running" class="playButton" mat-raised-button (click)="startTimer(); toggleBreathingCircle(); running = true">start<mat-icon>play_arrow</mat-icon></button>
+    <button *ngIf="running" class="playButton" mat-raised-button (click)="pauseTimer(); running = false">pause<mat-icon>pause</mat-icon></button>
+    <!-- <button *ngIf="minutes > 0" class="submit">Submit</button> -->
+</div>

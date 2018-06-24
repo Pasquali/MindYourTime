@@ -1,0 +1,36 @@
+.person {
+    font-size: 200px;
+    position: relative;
+    top: -280px;
+    z-index: 10;
+    pointer-events: none;
+    left: -1px;
+}
+.circle {
+    height: 175px;
+    width: 175px;
+    background-color: #5f5f5f;
+    border-radius: 50%;
+    position: relative;
+    top: -251px;    
+    left: -12px;
+}
+.timer {
+    top: 100px;
+}
+.playButton {
+    margin-top: 20px;
+    width: 100%;
+    font-size: 20px;
+    background-color: #181818;
+    color: gray;
+}
+.time {
+    text-align: center;
+    margin-bottom: 5px;
+    color: gray;
+}
+.container {
+    top: -150px;
+    position: relative
+}

@@ -1,8 +1,6 @@
 .card {
-    height: 94vh;
-    overflow: auto;
-    margin-bottom: 100px;
-    justify-content: center;
+    background-color: #303030;
+    height: 104vh;
 }
 .routeContainer {
     margin-bottom: 5px;   
@@ -10,6 +8,8 @@
     box-sizing: border-box;
     flex-direction: column;
     height: 94vh;
+    overflow: hidden;
+    background-color: #1b1b1b;
 }
 .title {
     margin-top: 8px;

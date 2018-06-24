@@ -1,3 +1,24 @@
-<div class="container">
+<form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <mat-form-field style="width: 100%">
+      <input matInput placeholder="Email" type="text" #usernameobj appAutofocus formControlName="username">
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+        <input matInput type="password" placeholder="Password" formControlName="password">
+    </mat-form-field>
+    <mat-error class="alert" *ngIf="error">
+      <span>{{error.error}}</span>
+    </mat-error>
+    <br>
+    <button mat-raised-button type="submit" [disabled]="!loginForm.valid">
+        <span class="login">Login</span>
+        <span class="spinner-position">
+          <mat-progress-spinner
+            *ngIf="showSpinner"
+            [diameter] = 20
+            class= "spinner"
+            mode= "indeterminate"
+          ></mat-progress-spinner>
+        </span>
+    </button>
+  </form>
   
-</div>

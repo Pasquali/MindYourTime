@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
@@ -18,11 +19,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-
+import { MatInputModule } from '@angular/material/input';
+import { FinishedResultsComponent } from './meditation-timer/finished-results/finished-results.component';
 
 const appRoutes: Routes = [{
     path: '',
@@ -37,29 +35,27 @@ const appRoutes: Routes = [{
     AppComponent,
     LoginComponent,
     TimerComponent,
-    TimerProgressComponent
+    TimerProgressComponent,
+    FinishedResultsComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only
     ),
-
-    AngularFireModule.initializeApp(environment.fireBaseConfig),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
     MatSidenavModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

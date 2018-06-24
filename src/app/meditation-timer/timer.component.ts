@@ -27,13 +27,16 @@ export class TimerComponent implements OnInit {
   timer; // the timeout object
   currentTime = 0; // the currentTime is in 10ths of a second
   state = 'expand';
-  totalTime = 5;
+  totalTime = .25;
   time;
   running = false; // Whether or not the timer is running
   timeString;
   minutes = 0;
   seconds = 0;
   breathTimeSetting = 5;
+  breathCount = 0;
+  finished = false;
+  results = false;
   constructor() {
   }
   toggleBreathingCircle() {
@@ -48,9 +51,11 @@ export class TimerComponent implements OnInit {
       const breathTimer = this.currentTime % this.breathTimeSetting;
       if ((breathTimer > 0 && breathTimer < .1)) {
           this.toggleBreathingCircle();
+          this.breathCount++;
       }
       if (this.time >= 75) {
         clearTimeout(this.timer);
+        this.finished = true;
         return;
       }
       this.currentTime += .1;

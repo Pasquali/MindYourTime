@@ -1,6 +1,7 @@
 .card {
     background-color: #303030;
     height: 104vh;
+    width: 600px;
 }
 .routeContainer {
     margin-bottom: 5px;   

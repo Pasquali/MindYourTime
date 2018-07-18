@@ -4,7 +4,6 @@
     top: -270px;
     z-index: 10;
     pointer-events: none;
-    left: -2px;
 }
 .circle {
     height: 176px;
@@ -13,16 +12,13 @@
     border-radius: 50%;
     position: relative;
     top: -242px;    
-    left: -14px;
-}
-.timer {
-    top: 100px;
+    left: -12px;
 }
 .playButton {
     margin-top: 20px;
     width: 100%;
     font-size: 20px;
-    background-color: #181818;
+    background-color: #303030;
     color: gray;
 }
 .time {
@@ -32,8 +28,18 @@
 }
 .container {
     top: -150px;
-    position: relative
+    position: relative;
 }
 .slider {
     width: 100%;
+}
+.mat-accordion,
+.mat-expansion-panel,
+.mat-expansion-panel-body,
+.mat-expansion-indicator {
+    background-color: #303030 !important;
+    color: gray;
+}
+.mat-expansion-panel-header-title {
+    color: gray;
 }

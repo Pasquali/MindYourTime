@@ -1,7 +1,9 @@
 .card {
     background-color: #303030;
-    height: 98vh;
+    height: 100vh;
     width: 600px;
+    overflow: auto;
+    overflow-x: hidden;
 }
 .routeContainer {
     margin-bottom: 5px;   
@@ -9,8 +11,6 @@
     /* box-sizing: border-box; */
     /* flex-direction: column; */
     /* height: 94vh; */
-    overflow-x: hidden;
-    overflow-y: auto;
     background-color: #1b1b1b;
 }
 .title {
@@ -23,10 +23,10 @@
 .menuIcon {
     Margin-top: 10px;
     left: -12px;
-    background-color: #2c2c2c;
+        color: gray;
 }
 
 .accountIcon {
     Margin-top: 10px;
-    background-color: #2c2c2c;
+    color: gray;
 }

@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '../../node_modules/@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
 
@@ -24,6 +25,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import {MatSliderModule} from '@angular/material/slider';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { ChartModule } from 'angular-highcharts';
 const appRoutes: Routes = [{
@@ -51,6 +53,7 @@ const appRoutes: Routes = [{
     BrowserAnimationsModule,
     ReactiveFormsModule,
     ChartModule,
+    HttpClientModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
     RouterModule.forRoot(
@@ -65,7 +68,8 @@ const appRoutes: Routes = [{
     MatCardModule,
     MatProgressSpinnerModule,
     MatInputModule,
-    MatSliderModule
+    MatSliderModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

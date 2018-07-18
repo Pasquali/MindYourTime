@@ -4,9 +4,10 @@
 body, html {
     padding: 0;
     margin: 0;
-    overflow: hidden;
     background-color: #1b1b1b;
-
+}
+body {
+    overflow: hidden;
 }
 .fill-remaining-space {
     flex: 1 1 auto;

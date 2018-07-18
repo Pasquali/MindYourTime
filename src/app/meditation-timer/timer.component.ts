@@ -1,49 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { style, animate, AnimationBuilder } from '@angular/animations';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css'],
-  animations: [
-    trigger('breathingCircle', [
-      state('expand',
-        style({
-          transform: 'scale( 1 )',
-          // height: '45px',
-          // width: '45px',
-      })),
-      state('contract',
-        style({
-          transform: 'scale( 1.8 )',
-          // height: '25px',
-          // width: '25px'
-        })),
-      transition('* <=> *', animate('{{time}}s'))
-    ])
-  ]
+  styleUrls: ['./timer.component.css']
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent implements AfterViewInit {
+  @ViewChild('el') el: ElementRef;
   timer; // the timeout object
   currentTime = 0; // the currentTime is in 10ths of a second
-  state = 'expand';
-  totalTime = 1;
+  totalTime = 5;
   time;
   running = false; // Whether or not the timer is running
-  timeString;
   minutes = 0;
   seconds = 0;
   breathTimeSetting = 5;
   breathCount = 0;
   finished = false;
   results = false;
-  constructor() {
+  state = 0;
+  currentScale = 1;
+  targetScale = 1.8;
+
+  private player;
+
+  constructor(private builder: AnimationBuilder, private data: DataService) { }
+
+  private animate() {
+    const factory = this.builder.build([
+      style({transform: `scale( ${this.currentScale} )`}),
+      animate(this.breathTimeSetting * 1000, style({transform: `scale( ${this.targetScale} )`}))
+    ]);
+
+    this.player = factory.create(this.el.nativeElement, {});
+
+    this.player.onDone(() => {
+      const temp = this.currentScale;
+      this.currentScale = this.targetScale;
+      this.targetScale = temp;
+      this.animate();
+      this.player.play();
+    });
+
   }
-  changeBreath(event) {
-    this.breathTimeSetting = event.value;
+  changeBreath(setting) {
+    this.breathTimeSetting = setting.value;
   }
-  toggleBreathingCircle() {
-    this.state = this.state === 'contract' ? 'expand' : 'contract';
+  changeTime(setting) {
+    this.totalTime = setting.value;
   }
   pauseTimer() {
     clearTimeout(this.timer);
@@ -53,7 +59,6 @@ export class TimerComponent implements OnInit {
     this.timer = setTimeout(() => {
       const breathTimer = this.currentTime % this.breathTimeSetting;
       if ((breathTimer > 0 && breathTimer < .1)) {
-          this.toggleBreathingCircle();
           this.breathCount++;
       }
       if (this.time >= 75) {
@@ -69,8 +74,12 @@ export class TimerComponent implements OnInit {
       this.startTimer();
     }, 100);
   }
-
-  ngOnInit() {
+  uploadTime(user_id, time, breaths) {
+    this.data.uploadTime(user_id, time, breaths)
+      .subscribe(res => console.log(res));
+  }
+  ngAfterViewInit() {
+    this.animate();
   }
 
 }

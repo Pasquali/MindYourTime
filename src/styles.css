@@ -5,7 +5,7 @@ body, html {
     padding: 0;
     margin: 0;
     background-color: #1b1b1b;
-}
+}   
 body {
     overflow: hidden;
 }
@@ -14,4 +14,16 @@ body {
 }
 .flex {
     display:flex;
+}
+body::-webkit-scrollbar {
+    width: 2px;
+}
+ 
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }

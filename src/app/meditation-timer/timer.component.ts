@@ -11,18 +11,20 @@ export class TimerComponent implements AfterViewInit {
   @ViewChild('el') el: ElementRef;
   timer; // the timeout object
   currentTime = 0; // the currentTime is in 10ths of a second
-  totalTime = 5;
+  sessionLength = 5;
   time;
   running = false; // Whether or not the timer is running
-  minutes = 0;
+  minutes = 0; // used to display a
   seconds = 0;
-  breathTimeSetting = 5;
+  recordedSeconds = 0; // resets after upload
+  recordedBreathCount = 0; // resets after upload
+  breathTimeSetting = 5; // length of inhale/exhale in seconds
   breathCount = 0;
   finished = false;
   results = false;
-  state = 0;
-  currentScale = 1;
-  targetScale = 1.8;
+  currentScale = 1; // used for the current scale setting of the breathing circle
+  targetScale = 1.8; // what the scale will be at the end of the animation
+  secondCount = 0; // counts 1 for each .1 of a second once it hit 10 it increments the seconds variable
 
   private player;
 
@@ -49,7 +51,7 @@ export class TimerComponent implements AfterViewInit {
     this.breathTimeSetting = setting.value;
   }
   changeTime(setting) {
-    this.totalTime = setting.value;
+    this.sessionLength = setting.value;
   }
   pauseTimer() {
     clearTimeout(this.timer);
@@ -60,23 +62,37 @@ export class TimerComponent implements AfterViewInit {
       const breathTimer = this.currentTime % this.breathTimeSetting;
       if ((breathTimer > 0 && breathTimer < .1)) {
           this.breathCount++;
+          this.recordedBreathCount++;
       }
       if (this.time >= 75) {
         clearTimeout(this.timer);
         this.finished = true;
         return;
       }
+      this.secondCount++;
+      if (this.secondCount % 10 === 0) {
+        this.seconds++;
+        if (this.seconds === 60) {
+          this.seconds = 0;
+          this.minutes++;
+        }
+      }
       this.currentTime += .1;
-      this.minutes = Math.floor(this.currentTime / 60);
-      this.seconds = this.currentTime - this.minutes * 60;
-      const percentage_of_total_time = this.currentTime / (this.totalTime * 60);
+      this.recordedSeconds += .1;
+      const percentage_of_total_time = this.currentTime / (this.sessionLength * 60);
       this.time = (percentage_of_total_time * 100) * .75;
       this.startTimer();
     }, 100);
   }
-  uploadTime(user_id, time, breaths) {
-    this.data.uploadTime(user_id, time, breaths)
-      .subscribe(res => console.log(res));
+  uploadTime() {
+    if (this.recordedSeconds > 0) {
+    this.data.uploadTime(1, this.recordedSeconds, this.recordedBreathCount)
+      .subscribe(res => {
+         // Resets after each succesfull upload
+          this.recordedBreathCount = 0;
+          this.recordedSeconds = 0;
+      });
+    }
   }
   ngAfterViewInit() {
     this.animate();

@@ -1,16 +1,28 @@
-.login-card {
+.mat-raised-button[disabled] {
+    color: rgb(110, 110, 110);
+}
+.input {
+    color: gray;
+}
+.register-card {
     background-color: #303030;
     color: gray;
     max-width: 500px;
 }
-.login-btn {
+textarea {
+    width: 100%;
+}
+.mat-hint {
+    color: gray;
+}
+.register-btn {
     color:gray;
     background-color: #3b3b3b;
     width: 150px;
 }
 .spinner-position {
     position: absolute;
-    right: 25px;
+    right: 20px;
     top: 8px;
 }
 .mat-raised-button[disabled] {

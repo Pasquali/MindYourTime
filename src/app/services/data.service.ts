@@ -13,4 +13,12 @@ export class DataService {
     const url = this.apiUrl + '/api/timer/upload-time';
     return this.http.post(url, {user_id: user_id, time: time, breaths: breaths});
   }
+  getTotalTime() {
+    const url = this.apiUrl + '/api/timer/total-time';
+    return this.http.get(url);
+  }
+  registerUser(user) {
+    const url = this.apiUrl + '/api/user/register-user';
+    return this.http.post(url, {user: user});
+  }
 }

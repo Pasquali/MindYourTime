@@ -1,0 +1,51 @@
+<div class="flex">
+  <span class="fill-remaining-space"></span>
+  <mat-card class="flex register-card">
+    <form  [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+        <mat-form-field style="width: 50%">
+          <input matInput placeholder="First Name" formControlName="first_name">
+        </mat-form-field>
+        <mat-form-field style="width: 50%">
+          <input matInput placeholder="Last Name" formControlName="last_name">
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <input col="4" matInput placeholder="Address" formControlName="address">
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Address 2" formControlName="address2">
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width: 33.3%">
+          <input matInput placeholder="City" formControlName="city">
+        </mat-form-field>
+        <mat-form-field style="width: 33.3%">
+          <input matInput placeholder="State" formControlName="state">
+        </mat-form-field>
+        <mat-form-field style="width: 33.3%">
+          <input matInput #postalCode maxlength="5" placeholder="Postal Code" formControlName="postal_code">
+          <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Company" formControlName="company">
+        </mat-form-field>
+        <br>
+        <div class="flex">
+          <span class="fill-remaining-space"></span>
+          <button mat-raised-button class="register-btn" type="submit" [disabled]="!registerForm.valid">
+            <span>Register</span>
+            <span class="spinner-position">
+              <mat-progress-spinner
+                *ngIf="showSpinner"
+                [diameter] = 20
+                class= "spinner"
+                mode= "indeterminate"
+              ></mat-progress-spinner>
+            </span>
+          </button>
+        </div>
+    </form>
+  </mat-card>
+  <span class="fill-remaining-space"></span>
+</div>
+

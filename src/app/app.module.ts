@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { environment } from '../environments/environment';
 
@@ -24,19 +25,23 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { ChartModule } from 'angular-highcharts';
+import { RegisterComponent } from './register/register.component';
 const appRoutes: Routes = [{
     path: '',
     redirectTo: '/timer',
     pathMatch: 'full'
   },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'account', component: AccountSettingsComponent },
   { path: 'timer', component: TimerComponent },
   { path: 'stats', component: StatsComponent },
+
+  { path: '**', component: TimerComponent },
 ];
 @NgModule({
   declarations: [
@@ -46,7 +51,8 @@ const appRoutes: Routes = [{
     TimerProgressComponent,
     StatsComponent,
     ChartComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,7 @@ const appRoutes: Routes = [{
     ReactiveFormsModule,
     ChartModule,
     HttpClientModule,
+    FormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
 
     RouterModule.forRoot(

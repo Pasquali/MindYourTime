@@ -1,4 +1,4 @@
-<app-timer-progress *ngIf="!results" [time]="time"></app-timer-progress>
+<app-timer-progress *ngIf="!results" [time]="timerPosition"></app-timer-progress>
 <div class="flex" *ngIf="!results">
     <span class="fill-remaining-space"></span>
     <mat-icon class="person">person</mat-icon>
@@ -11,7 +11,7 @@
     <div class="time">Minutes Complete</div>
     <button *ngIf="!running && !finished" class="playButton" mat-raised-button (click)="this.player.play(); startTimer(); running = true">Start<mat-icon>play_arrow</mat-icon></button>
     <button *ngIf="running && !finished" class="playButton" mat-raised-button (click)="player.pause(); pauseTimer(); running = false; uploadTime()">Pause<mat-icon>pause</mat-icon></button>
-    <button *ngIf="finished" class="playButton" mat-raised-button (click)="results = true; uploadTime()">Go to Results</button>
+    <button *ngIf="finished" class="playButton" mat-raised-button [routerLink]="['/stats']" [queryParams]="{minutes: minutes, seconds: seconds, total_seconds: currentTime}">Go to Results</button>
     <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -43,10 +43,4 @@
             </mat-slider>
         </mat-expansion-panel>
       </mat-accordion>    
-    <!-- <button *ngIf="minutes > 0" class="submit">Submit</button> -->
 </div>
-
-<app-stats *ngIf="results"
-[sessionTime]="{minutes: minutes, seconds: seconds, total_seconds: currentTime}"
-[sessionBreaths]="breathCount">
-</app-stats>

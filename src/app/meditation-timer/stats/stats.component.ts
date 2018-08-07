@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-stats',
@@ -6,10 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
-  @Input() sessionBreaths: number;
-  @Input() sessionTime: any;
+  sessionBreaths: number;
+  sessionTime: any;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private data: DataService) {
+    data.getTotalTime()
+    .subscribe(res => console.log(res));
+  }
 
   ngOnInit() {
   }

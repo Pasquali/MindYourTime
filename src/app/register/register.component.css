@@ -19,6 +19,7 @@ textarea {
     color:gray;
     background-color: #3b3b3b;
     width: 150px;
+    margin: 10px 0 10px 0;
 }
 .spinner-position {
     position: absolute;
@@ -27,4 +28,7 @@ textarea {
 }
 .mat-raised-button[disabled] {
     color: rgb(110, 110, 110);
+}
+.alert {
+    margin-top: 20px;
 }

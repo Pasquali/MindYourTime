@@ -30,7 +30,19 @@
           <input matInput placeholder="Company" formControlName="company">
         </mat-form-field>
         <br>
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Email Address" formControlName="email">
+        </mat-form-field>
+        <br>
+        <mat-form-field style="width: 50%">
+          <input matInput type="password" placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <mat-form-field style="width: 50%">
+          <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password">
+        </mat-form-field>
+        <br>
         <div class="flex">
+          <div class="alert" *ngIf="registerForm.controls.confirm_password.errors?.MatchPassword && registerForm.controls.password.errors?.MatchPassword">Password not match</div>
           <span class="fill-remaining-space"></span>
           <button mat-raised-button class="register-btn" type="submit" [disabled]="!registerForm.valid">
             <span>Register</span>

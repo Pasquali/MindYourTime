@@ -43,4 +43,4 @@ testem.log
 Thumbs.db
 
 # ignore config file
-/config/*
+/src/config/*

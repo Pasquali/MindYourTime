@@ -16,3 +16,16 @@
 .mat-raised-button[disabled] {
     color: rgb(110, 110, 110);
 }
+.alert {
+    margin-top: 10px;
+}
+.error-white {
+    margin-top: 10px;
+    position: absolute;
+    color: white;
+}
+.error-gray {
+    margin-top: 10px;
+    color:gray;
+    position: relative;
+}

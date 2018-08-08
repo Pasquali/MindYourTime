@@ -3,16 +3,15 @@
   <mat-card class="login-card">
     <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
       <mat-form-field style="width: 100%">
-        <input matInput placeholder="Email" type="text" #usernameobj appAutofocus formControlName="username">
+        <input matInput placeholder="Email" type="text" #usernameobj appAutofocus formControlName="email">
       </mat-form-field>
       <mat-form-field style="width: 100%">
           <input matInput type="password" placeholder="Password" formControlName="password">
       </mat-form-field>
-      <mat-error class="alert" *ngIf="error">
-        <span>{{error.error}}</span>
-      </mat-error>
       <br>
       <div class="flex">
+        <span class="error-gray">{{error}}</span>
+        <span  #errorText class="error-white">{{error}}</span>
         <span class="fill-remaining-space"></span>
         <button mat-raised-button class="login-btn" type="submit" [disabled]="!loginForm.valid">
           <span class="login">Login</span>

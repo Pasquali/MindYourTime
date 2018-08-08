@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
   apiUrl = 'http://localhost:3100';
   constructor(private http: HttpClient) { }
 
@@ -16,9 +15,5 @@ export class DataService {
   getTotalTime() {
     const url = this.apiUrl + '/api/timer/total-time';
     return this.http.get(url);
-  }
-  registerUser(user) {
-    const url = this.apiUrl + '/api/user/register-user';
-    return this.http.post(url, {user: user});
   }
 }

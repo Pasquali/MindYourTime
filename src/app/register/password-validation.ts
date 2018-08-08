@@ -8,7 +8,8 @@ export class PasswordValidation {
             AC.get('confirm_password').setErrors( {MatchPassword: true} );
             AC.get('password').setErrors( {MatchPassword: true} );
         } else {
-            return null;
+            AC.get('confirm_password').setErrors( null );
+            AC.get('password').setErrors( null );
         }
     }
 }

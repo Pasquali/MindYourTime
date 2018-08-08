@@ -16,6 +16,7 @@ import { TimerProgressComponent } from './meditation-timer/timer-progress/timer-
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { StatsComponent } from './meditation-timer/stats/stats.component';
 import { ChartComponent } from './meditation-timer/stats/chart/chart.component';
+import { RegisterComponent } from './register/register.component';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -29,7 +30,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { ChartModule } from 'angular-highcharts';
-import { RegisterComponent } from './register/register.component';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { CookieService } from 'ngx-cookie-service';
 const appRoutes: Routes = [{
     path: '',
     redirectTo: '/timer',
@@ -43,6 +45,14 @@ const appRoutes: Routes = [{
 
   { path: '**', component: TimerComponent },
 ];
+export function jwtOptionsFactory(cookieService) {
+  return {
+    tokenGetter: () => {
+      return cookieService.get('AuthToken');
+    }
+  };
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +72,13 @@ const appRoutes: Routes = [{
     HttpClientModule,
     FormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
-
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [CookieService]
+      }
+    }),
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only
@@ -78,7 +94,7 @@ const appRoutes: Routes = [{
     MatSliderModule,
     MatExpansionModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

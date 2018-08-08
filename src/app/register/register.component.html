@@ -9,29 +9,11 @@
           <input matInput placeholder="Last Name" formControlName="last_name">
         </mat-form-field>
         <mat-form-field style="width: 100%">
-          <input col="4" matInput placeholder="Address" formControlName="address">
-        </mat-form-field>
-        <br>
-        <mat-form-field style="width: 100%">
-          <input matInput placeholder="Address 2" formControlName="address2">
-        </mat-form-field>
-        <br>
-        <mat-form-field style="width: 33.3%">
-          <input matInput placeholder="City" formControlName="city">
-        </mat-form-field>
-        <mat-form-field style="width: 33.3%">
-          <input matInput placeholder="State" formControlName="state">
-        </mat-form-field>
-        <mat-form-field style="width: 33.3%">
-          <input matInput #postalCode maxlength="5" placeholder="Postal Code" formControlName="postal_code">
-          <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
-        </mat-form-field>
-        <mat-form-field style="width: 100%">
           <input matInput placeholder="Company" formControlName="company">
         </mat-form-field>
         <br>
         <mat-form-field style="width: 100%">
-          <input matInput placeholder="Email Address" formControlName="email">
+          <input matInput type="email" placeholder="Email Address" formControlName="email">
         </mat-form-field>
         <br>
         <mat-form-field style="width: 50%">
@@ -42,7 +24,7 @@
         </mat-form-field>
         <br>
         <div class="flex">
-          <div class="alert" *ngIf="registerForm.controls.confirm_password.errors?.MatchPassword && registerForm.controls.password.errors?.MatchPassword">Password not match</div>
+          <div class="alert" *ngIf="registerForm.controls.confirm_password.errors?.MatchPassword">Password not match</div>
           <span class="fill-remaining-space"></span>
           <button mat-raised-button class="register-btn" type="submit" [disabled]="!registerForm.valid">
             <span>Register</span>

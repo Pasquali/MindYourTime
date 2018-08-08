@@ -1,16 +1,10 @@
 .mat-raised-button[disabled] {
     color: rgb(110, 110, 110);
 }
-.input {
-    color: gray;
-}
 .register-card {
     background-color: #303030;
     color: gray;
     max-width: 500px;
-}
-textarea {
-    width: 100%;
 }
 .mat-hint {
     color: gray;

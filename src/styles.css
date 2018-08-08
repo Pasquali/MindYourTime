@@ -57,3 +57,6 @@ input:-webkit-autofill {
 .mat-raised-button[disabled] {
     color: rgb(110, 110, 110);
 }
+.mat-form-field-invalid {
+    color: red;
+}

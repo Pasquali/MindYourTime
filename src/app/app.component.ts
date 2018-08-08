@@ -8,8 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  authed;
   constructor(private auth: AuthService, private router: Router) {
-
+    this.auth.loggedin$()
+      .subscribe(res => {
+        this.authed = res;
+      });
   }
 
   logout() {

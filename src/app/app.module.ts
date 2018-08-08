@@ -32,6 +32,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { ChartModule } from 'angular-highcharts';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthGuard } from './services/auth-guard.service';
 const appRoutes: Routes = [{
     path: '',
     redirectTo: '/timer',
@@ -39,11 +40,11 @@ const appRoutes: Routes = [{
   },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'account', component: AccountSettingsComponent },
-  { path: 'timer', component: TimerComponent },
-  { path: 'stats', component: StatsComponent },
+  { path: 'account', component: AccountSettingsComponent, canActivate: [AuthGuard]},
+  { path: 'timer', component: TimerComponent, canActivate: [AuthGuard] },
+  { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
 
-  { path: '**', component: TimerComponent },
+  { path: '**', component: TimerComponent, canActivate: [AuthGuard] },
 ];
 export function jwtOptionsFactory(cookieService) {
   return {
@@ -94,7 +95,7 @@ export function jwtOptionsFactory(cookieService) {
     MatSliderModule,
     MatExpansionModule
   ],
-  providers: [CookieService],
+  providers: [CookieService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

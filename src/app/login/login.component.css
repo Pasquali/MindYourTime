@@ -2,6 +2,7 @@
     background-color: #303030;
     color: gray;
     max-width: 500px;
+    margin-top: 30px;
 }
 .login-btn {
     color:gray;
@@ -15,9 +16,6 @@
 }
 .mat-raised-button[disabled] {
     color: rgb(110, 110, 110);
-}
-.alert {
-    margin-top: 10px;
 }
 .error-white {
     margin-top: 10px;

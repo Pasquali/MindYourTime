@@ -24,5 +24,16 @@
     color: rgb(110, 110, 110);
 }
 .alert {
-    margin-top: 20px;
+    margin-top: -10px;
+    position: absolute;
+}
+.error-white {
+    margin-top: 10px;
+    position: absolute;
+    color: white;
+}
+.error-gray {
+    margin-top: 10px;
+    color:gray;
+    position: relative;
 }

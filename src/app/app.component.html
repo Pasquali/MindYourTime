@@ -1,7 +1,6 @@
 <mat-menu #accountMent="matMenu">
   <a mat-menu-item routerLink="/account">
     <mat-icon>person</mat-icon>
-<!--      <button mat-raised-button [routerLink]="['/feedback']"></button>      -->
     <span>Account Settings</span>
   </a>
   <a mat-menu-item (click)="logout()">
@@ -13,7 +12,6 @@
 <mat-menu #siteMenu="matMenu">
   <a mat-menu-item routerLink="/stats">
     <mat-icon>bar_chart</mat-icon>
-<!--      <button mat-raised-button [routerLink]="['/feedback']"></button>      -->
     <span>My Stats</span>
   </a>
   <a mat-menu-item routerLink="/timer">
@@ -26,10 +24,10 @@
   <span class="fill-remaining-space"></span>
   <mat-card class="card">
     <mat-card-header class="flex"> 
-      <button mat-icon-button class="menuIcon" [matMenuTriggerFor]="siteMenu"><mat-icon>menu</mat-icon></button>    
+      <button *ngIf="authed" mat-icon-button class="menuIcon" [matMenuTriggerFor]="siteMenu"><mat-icon>menu</mat-icon></button>    
         <span class="fill-remaining-space"></span>
         <span class="fill-remaining-space"></span>
-      <button mat-icon-button class="accountIcon" [matMenuTriggerFor]="accountMent"><mat-icon>person</mat-icon></button>    
+      <button *ngIf="authed" mat-icon-button class="accountIcon" [matMenuTriggerFor]="accountMent"><mat-icon>person</mat-icon></button>    
     </mat-card-header>
     <router-outlet></router-outlet>
   </mat-card>

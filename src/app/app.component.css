@@ -21,9 +21,13 @@
     color: gray;
 }
 .menuIcon {
-    Margin-top: 10px;
+    Margin-top: 24px;
+    /* height: 20px; */
     left: -12px;
-        color: gray;
+    color: gray;
+}
+.header {
+    height: 22px;
 }
 
 .accountIcon {

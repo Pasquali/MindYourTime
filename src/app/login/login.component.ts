@@ -11,14 +11,15 @@ import { AnimationBuilder, animate, style } from '@angular/animations';
 })
 export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('errorText') errorText: ElementRef;
-
-  loginForm: FormGroup;
-  showSpinner = false;
   error = '';
   private player;
   currentOpacity = '0';
   targetOpacity = '1';
   blinkCount = 0;
+
+  loginForm: FormGroup;
+  showSpinner = false;
+
   constructor(private auth: AuthService, public router: Router, private fb: FormBuilder,
     private builder: AnimationBuilder) {
   this.loginForm = fb.group({

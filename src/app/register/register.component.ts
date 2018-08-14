@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { PasswordValidation } from './password-validation';
 import { AnimationBuilder, style, animate } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   registerForm: FormGroup;
 
   constructor(private fb: FormBuilder, private auth: AuthService,
-    private builder: AnimationBuilder) {
+    private builder: AnimationBuilder, private router: Router) {
     this.registerForm = fb.group({
       'first_name' : [null, Validators.required],
       'last_name' : [null, Validators.required],
@@ -64,6 +65,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         if (res.error) {
           this.error = res.error;
           this.player.play();
+        } else if (res.auth) {
+          this.router.navigate(['/timer']);
         }
       });
   }

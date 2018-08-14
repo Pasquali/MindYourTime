@@ -31,9 +31,13 @@ export class AuthService {
     return this.http.post<any>(url, {credentials})
     .pipe(
       map(result => {
-        this.cookieService.set('access_token', result.token);
-        this.loggedinStream.next(true);
-        return result;
+        if (result.auth) {
+          this.cookieService.set('access_token', result.token);
+          this.loggedinStream.next(true);
+          return result;
+        } else {
+          return result;
+        }
       })
     );
   }
@@ -50,9 +54,8 @@ export class AuthService {
         })
       );
   }
-  test() {
-    const url = this.apiUrl + '/api/auth/me';
-    return this.http.get(url, {withCredentials: true});
+  getAuthToken() {
+    return this.cookieService.get('access_token');
   }
   logout() {
     this.loggedinStream.next(false);

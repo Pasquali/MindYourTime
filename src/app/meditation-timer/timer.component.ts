@@ -93,7 +93,7 @@ export class TimerComponent implements AfterViewInit {
   }
   uploadTime() {
     if (this.recordedSeconds > 0) {
-    this.data.uploadTime(1, this.recordedSeconds, this.recordedBreathCount)
+    this.data.uploadTime(this.recordedSeconds, this.recordedBreathCount)
       .subscribe(res => {
          // Resets after each succesfull upload
           this.recordedBreathCount = 0;

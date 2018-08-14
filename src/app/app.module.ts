@@ -49,7 +49,7 @@ const appRoutes: Routes = [{
 export function jwtOptionsFactory(cookieService) {
   return {
     tokenGetter: () => {
-      return cookieService.get('AuthToken');
+      return cookieService.get('access_token');
     }
   };
 }

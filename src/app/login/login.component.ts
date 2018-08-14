@@ -11,7 +11,7 @@ import { AnimationBuilder, animate, style } from '@angular/animations';
 })
 export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('errorText') errorText: ElementRef;
-  error = '';
+    error = '';
   private player;
   currentOpacity = '0';
   targetOpacity = '1';
@@ -26,6 +26,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     'email' : [null, Validators.required],
     'password' : [null, Validators.required],
   });
+    if (auth.loggedin$()) {
+      router.navigate(['/timer']);
+    }
 }
 
   private animate() {

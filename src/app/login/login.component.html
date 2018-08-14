@@ -1,6 +1,13 @@
 <div class="flex">
   <span class="fill-remaining-space"></span>
   <mat-card class="login-card">
+
+    <div class="flex">
+      <span class="fill-remaining-space"></span>
+      <span><img src="../../assets/yoga_seed_logopng.png"></span>
+      <span class="fill-remaining-space"></span>
+    </div>
+
     <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
       <mat-form-field style="width: 100%">
         <input matInput placeholder="Email" type="text" #usernameobj appAutofocus formControlName="email">

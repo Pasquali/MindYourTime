@@ -27,3 +27,6 @@
     color:gray;
     position: relative;
 }
+img {
+    max-width: 200px;
+}

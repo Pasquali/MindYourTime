@@ -1,47 +1,50 @@
 <div class="flex">
   <span class="fill-remaining-space"></span>
   <mat-card class="flex register-card">
-    <form  [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
-        <mat-form-field style="width: 50%">
-          <input matInput placeholder="First Name" formControlName="first_name">
-        </mat-form-field>
-        <mat-form-field style="width: 50%">
-          <input matInput placeholder="Last Name" formControlName="last_name">
-        </mat-form-field>
-        <mat-form-field style="width: 100%">
-          <input matInput placeholder="Company" formControlName="company">
-        </mat-form-field>
-        <br>
-        <mat-form-field style="width: 100%">
-          <input matInput type="email" placeholder="Email Address" formControlName="email">
-        </mat-form-field>
-        <br>
-        <mat-form-field style="width: 50%">
-          <input matInput type="password" placeholder="Password" formControlName="password">
-        </mat-form-field>
-        <mat-form-field style="width: 50%">
-          <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password">
-        </mat-form-field>
-        <br>
-        <div class="flex">
-          <span class="error-gray">{{error}}</span>
-          <span #errorText class="error-white">{{error}}</span>
-          <div class="alert" *ngIf="registerForm.controls.confirm_password.errors?.MatchPassword && 
-          registerForm.controls.confirm_password.pristine == false">Password does not match</div>
-          <span class="fill-remaining-space"></span>
-          <button mat-raised-button class="register-btn" type="submit" >
-            <span>Register</span>
-            <span class="spinner-position">
-              <mat-progress-spinner
-                *ngIf="showSpinner"
-                [diameter] = 20
-                class= "spinner"
-                mode= "indeterminate"
-              ></mat-progress-spinner>
-            </span>
-          </button>
-        </div>
-    </form>
+    <button mat-button routerLink="/login"><mat-icon>arrow_back</mat-icon>Back to Login</button>
+    <div class="register-form">
+      <form  [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+          <mat-form-field style="width: 50%">
+            <input matInput placeholder="First Name" formControlName="first_name">
+          </mat-form-field>
+          <mat-form-field style="width: 50%">
+            <input matInput placeholder="Last Name" formControlName="last_name">
+          </mat-form-field>
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Company" formControlName="company">
+          </mat-form-field>
+          <br>
+          <mat-form-field style="width: 100%">
+            <input matInput type="email" placeholder="Email Address" formControlName="email">
+          </mat-form-field>
+          <br>
+          <mat-form-field style="width: 50%">
+            <input matInput type="password" placeholder="Password" formControlName="password">
+          </mat-form-field>
+          <mat-form-field style="width: 50%">
+            <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password">
+          </mat-form-field>
+          <br>
+          <div class="flex">
+            <span class="error-gray">{{error}}</span>
+            <span #errorText class="error-white">{{error}}</span>
+            <div class="alert" *ngIf="registerForm.controls.confirm_password.errors?.MatchPassword && 
+            registerForm.controls.confirm_password.pristine == false">Password does not match</div>
+            <span class="fill-remaining-space"></span>
+            <button mat-raised-button class="register-btn" type="submit" >
+              <span>Register</span>
+              <span class="spinner-position">
+                <mat-progress-spinner
+                  *ngIf="showSpinner"
+                  [diameter] = 20
+                  class= "spinner"
+                  mode= "indeterminate"
+                ></mat-progress-spinner>
+              </span>
+            </button>
+          </div>
+      </form>
+    </div>
   </mat-card>
   <span class="fill-remaining-space"></span>
 </div>

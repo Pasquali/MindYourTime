@@ -18,7 +18,11 @@
       <br>
       <div class="flex">
         <span class="error-gray">{{error}}</span>
-        <span  #errorText class="error-white">{{error}}</span>
+        <span #errorText class="error-white">{{error}}</span>
+      </div>
+      <br>
+      <div class="flex">
+        <button mat-raised-button class="login-btn" routerLink="/register">Register</button>
         <span class="fill-remaining-space"></span>
         <button mat-raised-button class="login-btn" type="submit" [disabled]="!loginForm.valid">
           <span class="login">Login</span>

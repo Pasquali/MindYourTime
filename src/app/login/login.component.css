@@ -7,7 +7,7 @@
 .login-btn {
     color:gray;
     background-color: #3b3b3b;
-    width: 150px;
+    width: 48%;
 }
 .spinner-position {
     position: absolute;
@@ -28,6 +28,7 @@
     position: relative;
 }
 img {
-    max-width: 200px;
+    height: 400px;
+    /* max-width: 200px; */
     margin-bottom: 20px;
 }

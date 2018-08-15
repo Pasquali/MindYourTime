@@ -5,6 +5,7 @@
     background-color: #303030;
     color: gray;
     max-width: 500px;
+    min-height: 100vh;
 }
 .mat-hint {
     color: gray;
@@ -36,4 +37,7 @@
     margin-top: 10px;
     color:gray;
     position: relative;
+}
+.register-form {
+    margin-top: 50px;
 }

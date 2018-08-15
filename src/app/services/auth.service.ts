@@ -42,7 +42,8 @@ export class AuthService {
     );
   }
   get loggedIn(): boolean {
-    return (this.cookieService.get('access_token') !== 'null');
+    return (this.cookieService.get('access_token') !== 'null' &&
+      this.cookieService.get('access_token') !== '');
   }
   registerUser(user) {
     const url = this.apiUrl + '/api/auth/register-user';

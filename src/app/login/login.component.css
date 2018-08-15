@@ -2,7 +2,7 @@
     background-color: #303030;
     color: gray;
     max-width: 500px;
-    margin-top: 30px;
+    min-height: 100vh;
 }
 .login-btn {
     color:gray;
@@ -29,4 +29,5 @@
 }
 img {
     max-width: 200px;
+    margin-bottom: 20px;
 }

@@ -60,3 +60,8 @@ input:-webkit-autofill {
 .mat-form-field-invalid {
     color: red;
 }
+.mat-menu-content, .mat-menu-item {
+    background-color: #1b1b1b;
+    color: gray;
+    outline: 0;
+}

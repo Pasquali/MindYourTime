@@ -34,3 +34,6 @@
     Margin-top: 10px;
     color: gray;
 }
+.mat-menu-item .mat-icon {
+    color: gray;
+} 

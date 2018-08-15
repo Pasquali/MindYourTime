@@ -8,12 +8,18 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
-  sessionBreaths: number;
+  sessionBreaths: Number;
   sessionTime: any;
+  totalTime;
+  totalBreaths;
 
   constructor(private route: ActivatedRoute, private data: DataService) {
-    data.getTotalTime()
-    .subscribe(res => console.log(res));
+    data.getTotalValues()
+    .subscribe(res => {
+      console.log(res);
+      this.totalTime = res.totalTime;
+      this.totalBreaths = res.totalBreaths;
+    });
   }
 
   ngOnInit() {

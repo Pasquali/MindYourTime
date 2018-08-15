@@ -17,8 +17,8 @@ export class DataService {
     const url = this.apiUrl + '/api/timer/upload-time';
     return this.http.post(url, {time: time, breaths: breaths}, {headers: headers, withCredentials: true});
   }
-  getTotalTime() {
+  getTotalValues() {
     const url = this.apiUrl + '/api/timer/total-time';
-    return this.http.get(url, {withCredentials: true});
+    return this.http.get<any>(url, {withCredentials: true});
   }
 }

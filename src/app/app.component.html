@@ -29,7 +29,9 @@
         <span class="fill-remaining-space"></span>
       <button *ngIf="authed" mat-icon-button class="accountIcon" [matMenuTriggerFor]="accountMent"><mat-icon>person</mat-icon></button>    
     </mat-card-header>
-    <router-outlet></router-outlet>
+    <div class="route-container">
+      <router-outlet></router-outlet>
+    </div>
   </mat-card>
   <span class="fill-remaining-space"></span>
 </div>

@@ -34,7 +34,6 @@ input:-webkit-autofill {
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #3d7b5f !important;
 }
-
 .mat-slider-thumb,
 .mat-slider-thumb-label, .mat-slider-track-fill {
     background-color: #3d7b5f !important;

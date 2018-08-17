@@ -2,12 +2,13 @@
     background-color: #303030;
     color: gray;
     max-width: 500px;
-    min-height: 100vh;
+    height: 100%;
 }
 .login-btn {
     color:gray;
     background-color: #3b3b3b;
     width: 48%;
+    margin-bottom: 100px;
 }
 .spinner-position {
     position: absolute;

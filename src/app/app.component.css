@@ -1,20 +1,17 @@
 .card {
     background-color: #303030;
     height: 100vh;
+    top: -20px;
     width: 600px;
-    overflow: auto;
+    /* overflow: auto; */
     overflow-x: hidden;
 }
-.routeContainer {
-    margin-bottom: 5px;   
+.route-container {
+    /* margin-bottom: 50px;    */
     /* margin-top: 40px; */
     /* box-sizing: border-box; */
     /* flex-direction: column; */
-    /* height: 94vh; */
-    background-color: #1b1b1b;
-}
-.title {
-    margin-top: 8px;
+    height: 99vh;
 }
 .toolbar {
     background-color: #181818;

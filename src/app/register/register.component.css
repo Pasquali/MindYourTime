@@ -5,7 +5,7 @@
     background-color: #303030;
     color: gray;
     max-width: 500px;
-    min-height: 100vh;
+    min-height: 100%;
 }
 .mat-hint {
     color: gray;
@@ -15,6 +15,7 @@
     background-color: #3b3b3b;
     width: 150px;
     margin: 10px 0 10px 0;
+    margin-bottom: 20px;
 }
 .spinner-position {
     position: absolute;

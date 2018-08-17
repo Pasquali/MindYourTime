@@ -31,7 +31,7 @@
             <div class="alert" *ngIf="registerForm.controls.confirm_password.errors?.MatchPassword && 
             registerForm.controls.confirm_password.pristine == false">Password does not match</div>
             <span class="fill-remaining-space"></span>
-            <button mat-raised-button class="register-btn" type="submit" >
+            <button mat-raised-button class="register-btn" type="submit" [disabled]="!registerForm.valid">
               <span>Register</span>
               <span class="spinner-position">
                 <mat-progress-spinner

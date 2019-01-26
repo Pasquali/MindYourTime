@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 
 @Component({
@@ -13,7 +12,7 @@ export class StatsComponent implements OnInit {
   breathPointsPerDay;
   ready = false;
 
-  constructor(private route: ActivatedRoute, private data: DataService) {
+  constructor(private data: DataService) {
   }
 
   ngOnInit() {

@@ -27,7 +27,7 @@ export class TimerComponent implements AfterViewInit {
   targetScale = 1.8; // what the scale will be at the end of the animation
   secondCount = 0; // counts 1 for each .1 of a second once it hit 10 it increments the seconds variable
   initalUpload = true;
-  private player;
+  player;
 
   constructor(private builder: AnimationBuilder, private data: DataService) { }
 

@@ -9,7 +9,7 @@
 <div class="container" *ngIf="!results">
     <div class="time">{{ minutes }}:{{ seconds | number: '2.0-0' }}</div>
     <div class="time">Minutes Complete</div>
-    <button *ngIf="!running && !finished" class="playButton" mat-raised-button (click)="this.player.play(); startTimer(); running = true">Start<mat-icon>play_arrow</mat-icon></button>
+    <button *ngIf="!running && !finished" class="playButton" mat-raised-button (click)="player.play(); startTimer(); running = true">Start<mat-icon>play_arrow</mat-icon></button>
     <button *ngIf="running && !finished" class="playButton" mat-raised-button (click)="player.pause(); pauseTimer(); running = false; uploadTime()">Pause<mat-icon>pause</mat-icon></button>
     <button *ngIf="finished" class="playButton" mat-raised-button [routerLink]="['/stats']" [queryParams]="{minutes: minutes, seconds: seconds, total_seconds: currentTime}">Go to Results</button>
     <mat-accordion>
@@ -42,5 +42,5 @@
                 [(value)]="sessionLength">
             </mat-slider>
         </mat-expansion-panel>
-      </mat-accordion>    
+    </mat-accordion>    
 </div>

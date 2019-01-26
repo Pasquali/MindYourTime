@@ -3,10 +3,10 @@
     <app-chart [data]="breathPointsPerDay"></app-chart>
   </div>
   <div class="cards">
-    <span *ngIf="sessionBreaths > 0" class="flex">
+    <span *ngIf="totalBreaths > 0" class="flex">
       <mat-card>
         <div class="totalItem">
-          {{sessionBreaths}}
+          {{ totalBreaths }}
         </div>
         <div class="totalText">
           Breaths taken this session
@@ -15,7 +15,7 @@
       <span class="fill-remaining-space"></span>      
       <mat-card> 
         <div class="totalItem">
-          {{sessionTime.minutes}}:{{sessionTime.seconds | number: '2.0-0'}}          
+          {{ totalTime }}          
         </div>
         <div class="totalText">
           Session Length

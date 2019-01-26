@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit, AfterViewInit {
+export class RegisterComponent implements AfterViewInit {
   @ViewChild('errorText') errorText: ElementRef;
   error = '';
   private player;
@@ -69,9 +69,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           this.router.navigate(['/timer']);
         }
       });
-  }
-
-  ngOnInit() {
   }
   ngAfterViewInit() {
     this.animate();

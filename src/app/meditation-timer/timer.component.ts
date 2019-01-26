@@ -98,7 +98,6 @@ export class TimerComponent implements AfterViewInit {
           this.uploadId = res.id;
       });
   }
-  
   ngAfterViewInit() {
     this.animate();
   }

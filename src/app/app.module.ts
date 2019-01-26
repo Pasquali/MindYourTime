@@ -19,7 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-//components
+// components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { TimerComponent } from './meditation-timer/timer.component';

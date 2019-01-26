@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 
@@ -11,10 +11,6 @@ export class DataService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   uploadTime(time, breaths, id = null) {
-    const headers: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    const token = this.auth.getAuthToken();
     const url = this.apiUrl + '/api/timer/upload-time';
     return this.http.post<any>(url, {time: time, breaths: breaths, id: id}, {withCredentials: true});
   }

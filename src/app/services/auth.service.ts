@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { map } from 'rxjs/operators';
-import { ReplaySubject, Observable, throwError } from 'rxjs';
+import { ReplaySubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -64,6 +64,6 @@ export class AuthService {
     this.http.post(url, {}, {withCredentials: true})
       .subscribe(res => {
         this.router.navigate(['/login']);
-      })
+      });
   }
 }

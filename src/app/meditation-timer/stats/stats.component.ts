@@ -19,11 +19,9 @@ export class StatsComponent implements OnInit {
   ngOnInit() {
     this.data.getTotalValues()
     .subscribe(res => {
-      console.log(res);
       this.totalTime = res.totalTime;
       this.totalBreaths = res.totalBreaths;
       this.breathPointsPerDay = res.breathPointsPerDay;
-      console.log( this.breathPointsPerDay);
       this.ready = true;
     });
   }

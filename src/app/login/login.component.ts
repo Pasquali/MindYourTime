@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { AnimationBuilder, animate, style } from '@angular/animations';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements AfterViewInit {
   @ViewChild('errorText') errorText: ElementRef;
     error = '';
   private player;
@@ -64,20 +64,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.player.play();
         }
     });
-    
-    // .subscribe(response => {
-    //   console.log(response);
-    //   const data: any = response;
-    //   this.showSpinner = false;
-    //   if (data.ok) {
-    //     this.Auth.loginStream.next(true);
-    //     this.router.navigate(['/dashboard']);
-    //   } else {
-    //     this.error = data;
-    //   }
-  // });
-  }
-  ngOnInit() {
   }
   ngAfterViewInit() {
     this.animate();

@@ -5,11 +5,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start-aot": "ng serve --aot",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "updatez": "ng update @angular/cli @angular/core"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

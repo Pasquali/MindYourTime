@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  apiUrl = 'http://localhost:3100';
+  apiUrl = environment.apiUrl;
   constructor(private http: HttpClient, private auth: AuthService) { }
 
-  uploadTime(time, breaths) {
+  uploadTime(time, breaths, id = null) {
     const headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     const token = this.auth.getAuthToken();
     const url = this.apiUrl + '/api/timer/upload-time';
-    return this.http.post(url, {time: time, breaths: breaths}, {headers: headers, withCredentials: true});
+    return this.http.post<any>(url, {time: time, breaths: breaths, id: id}, {withCredentials: true});
   }
   getTotalValues() {
     const url = this.apiUrl + '/api/timer/total-time';

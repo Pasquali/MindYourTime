@@ -3,24 +3,21 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { map } from 'rxjs/operators';
-import { ReplaySubject, Observable } from 'rxjs';
+import { ReplaySubject, Observable, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // loginErrorStream: ReplaySubject<any> = new ReplaySubject();
   loggedinStream: ReplaySubject<any> = new ReplaySubject();
-  authState: any = null;
-  apiUrl = 'http://localhost:3100';
+  authed: boolean;
+  apiUrl = environment.apiUrl;
 
 
   loggedin$(): Observable<any> {
     return this.loggedinStream.asObservable();
   }
-  // loginError$(): Observable<any> {
-  //   return this.loginErrorStream.asObservable();
-  // }
 
   constructor(private router: Router, private http: HttpClient,
     private cookieService: CookieService) {
@@ -28,7 +25,7 @@ export class AuthService {
 
   login(credentials) {
     const url = this.apiUrl + '/api/auth/login';
-    return this.http.post<any>(url, {credentials})
+    return this.http.post<any>(url, {credentials}, {withCredentials: true})
     .pipe(
       map(result => {
         if (result.auth) {
@@ -41,10 +38,12 @@ export class AuthService {
       })
     );
   }
-  get loggedIn(): boolean {
+
+  get loggedIn() {
     return (this.cookieService.get('access_token') !== 'null' &&
       this.cookieService.get('access_token') !== '');
   }
+
   registerUser(user) {
     const url = this.apiUrl + '/api/auth/register-user';
     return this.http.post<any>(url, {user: user})
@@ -59,7 +58,12 @@ export class AuthService {
     return this.cookieService.get('access_token');
   }
   logout() {
+    const url = this.apiUrl + '/api/auth/logout';
     this.loggedinStream.next(false);
     this.cookieService.set('access_token', null);
+    this.http.post(url, {}, {withCredentials: true})
+      .subscribe(res => {
+        this.router.navigate(['/login']);
+      })
   }
 }

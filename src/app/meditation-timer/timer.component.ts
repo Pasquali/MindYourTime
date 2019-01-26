@@ -10,6 +10,7 @@ import { DataService } from '../services/data.service';
 export class TimerComponent implements AfterViewInit {
   @ViewChild('el') el: ElementRef;
   timer; // the timeout object
+  uploadId;
   currentTime = 0; // the currentTime is in 10ths of a second
   sessionLength = 5;
   timerPosition; // position on material timer
@@ -25,7 +26,7 @@ export class TimerComponent implements AfterViewInit {
   currentScale = 1; // used for the current scale setting of the breathing circle
   targetScale = 1.8; // what the scale will be at the end of the animation
   secondCount = 0; // counts 1 for each .1 of a second once it hit 10 it increments the seconds variable
-
+  initalUpload = true;
   private player;
 
   constructor(private builder: AnimationBuilder, private data: DataService) { }
@@ -92,15 +93,12 @@ export class TimerComponent implements AfterViewInit {
     this.startTimer();
   }
   uploadTime() {
-    if (this.recordedSeconds > 0) {
-    this.data.uploadTime(this.recordedSeconds, this.recordedBreathCount)
+    this.data.uploadTime(this.recordedSeconds, this.recordedBreathCount, this.uploadId)
       .subscribe(res => {
-         // Resets after each succesfull upload
-          this.recordedBreathCount = 0;
-          this.recordedSeconds = 0;
+          this.uploadId = res.id;
       });
-    }
   }
+  
   ngAfterViewInit() {
     this.animate();
   }

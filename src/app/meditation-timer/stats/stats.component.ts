@@ -8,21 +8,24 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
-  sessionBreaths: Number;
-  sessionTime: any;
   totalTime;
   totalBreaths;
+  breathPointsPerDay;
+  ready = false;
 
   constructor(private route: ActivatedRoute, private data: DataService) {
-    data.getTotalValues()
+  }
+
+  ngOnInit() {
+    this.data.getTotalValues()
     .subscribe(res => {
       console.log(res);
       this.totalTime = res.totalTime;
       this.totalBreaths = res.totalBreaths;
+      this.breathPointsPerDay = res.breathPointsPerDay;
+      console.log( this.breathPointsPerDay);
+      this.ready = true;
     });
-  }
-
-  ngOnInit() {
   }
 
 }

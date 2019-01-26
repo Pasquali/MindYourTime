@@ -26,10 +26,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     'email' : [null, Validators.required],
     'password' : [null, Validators.required],
   });
-    if (auth.loggedin$()) {
       router.navigate(['/timer']);
-    }
-}
+  }
 
   private animate() {
     const factory = this.builder.build([
@@ -59,7 +57,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.auth.login(credentials)
       .subscribe(res => {
         this.showSpinner = false;
-        console.log(res);
         if (res.auth) {
           this.router.navigate(['/timer']);
         } else {
@@ -67,6 +64,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.player.play();
         }
     });
+    
     // .subscribe(response => {
     //   console.log(response);
     //   const data: any = response;

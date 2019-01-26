@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="chart">
-    <app-chart></app-chart>
+  <div class="chart" *ngIf="ready">
+    <app-chart [data]="breathPointsPerDay"></app-chart>
   </div>
   <div class="cards">
     <span *ngIf="sessionBreaths > 0" class="flex">

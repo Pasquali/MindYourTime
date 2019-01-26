@@ -5,12 +5,5 @@
 
 export const environment = {
   production: false,
-  fireBaseConfig: {
-    apiKey: 'AIzaSyAzxPdmIl3zyyhWR_4bYcP6JBzVQLUPLhE',
-    authDomain: 'yogaseed-employee-dashboard.firebaseapp.com',
-    databaseURL: 'https://yogaseed-employee-dashboard.firebaseio.com',
-    projectId: 'yogaseed-employee-dashboard',
-    storageBucket: 'yogaseed-employee-dashboard.appspot.com',
-    messagingSenderId: '814696094580'
-  }
+  apiUrl: '//localhost:3100'
 };

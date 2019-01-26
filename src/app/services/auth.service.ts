@@ -49,7 +49,10 @@ export class AuthService {
     return this.http.post<any>(url, {user: user})
       .pipe(
         map(result => {
-          this.cookieService.set('access_token', result.token);
+          if (!result.error) {
+            this.cookieService.set('access_token', result.token);
+            return result;
+          }
           return result;
         })
       );

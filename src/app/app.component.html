@@ -1,4 +1,4 @@
-<mat-menu #accountMent="matMenu">
+<mat-menu #accountMenu="matMenu">
   <a mat-menu-item routerLink="/account">
     <mat-icon>person</mat-icon>
     <span>Account Settings</span>
@@ -20,18 +20,15 @@
   </a>
 </mat-menu>
   
-<div class="flex">
-  <span class="fill-remaining-space"></span>
-  <mat-card class="card">
-    <mat-card-header class="flex"> 
-      <button *ngIf="authed" mat-icon-button class="menuIcon" [matMenuTriggerFor]="siteMenu"><mat-icon>menu</mat-icon></button>    
-        <span class="fill-remaining-space"></span>
-        <span class="fill-remaining-space"></span>
-      <button *ngIf="authed" mat-icon-button class="accountIcon" [matMenuTriggerFor]="accountMent"><mat-icon>person</mat-icon></button>    
-    </mat-card-header>
-    <div class="route-container">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-card>
-  <span class="fill-remaining-space"></span>
-</div>
+<mat-card class="card">
+  <mat-card-header class="flex header"> 
+    <button *ngIf="authed" mat-icon-button class="menuIcon" [matMenuTriggerFor]="siteMenu">
+      <mat-icon>menu</mat-icon>
+    </button>    
+      <span class="fill-remaining-space"></span>
+    <button *ngIf="authed" mat-icon-button class="accountIcon" [matMenuTriggerFor]="accountMenu">
+      <mat-icon>person</mat-icon>
+    </button>    
+  </mat-card-header>
+  <router-outlet></router-outlet>
+</mat-card>

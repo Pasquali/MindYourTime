@@ -2,31 +2,23 @@
     background-color: #303030;
     height: 100vh;
     top: -20px;
-    width: 600px;
-    /* overflow: auto; */
-    /* overflow-x: hidden; */
-}
-.route-container {
-    /* margin-bottom: 50px;    */
-    /* margin-top: 40px; */
-    /* box-sizing: border-box; */
-    /* flex-direction: column; */
-    height: 99vh;
+    max-width: 1200px;
+    margin: auto;
+    overflow: auto;
 }
 .toolbar {
     background-color: #181818;
     color: gray;
 }
+.header {
+    margin-bottom: 10px;
+}
 .menuIcon {
     Margin-top: 10px;
-    /* height: 20px; */
     left: -12px;
     color: gray;
-}
-.header {
-    height: 22px;
-}
 
+}
 .accountIcon {
     Margin-top: 10px;
     color: gray;

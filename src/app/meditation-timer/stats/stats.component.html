@@ -3,7 +3,7 @@
     <app-chart [data]="breathPointsPerDay"></app-chart>
   </div>
   <div class="cards">
-    <span *ngIf="totalBreaths > 0" class="flex">
+    <div *ngIf="totalBreaths > 0" class="flex">
       <mat-card>
         <div class="totalItem">
           {{ totalBreaths }}
@@ -21,8 +21,8 @@
           Session Length
         </div>
       </mat-card>
-    </span>
-    <span class="flex">
+    </div>
+    <div class="flex">
       <mat-card>
         <div class="totalItem">
           {{ totalBreaths }}
@@ -40,6 +40,6 @@
             Total Time Meditating
         </div>
       </mat-card>
-    </span>
+    </div>
   </div>
 </div>

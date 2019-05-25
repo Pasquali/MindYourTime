@@ -82,7 +82,8 @@ export function jwtOptionsFactory(cookieService) {
     MatProgressSpinnerModule,
     MatInputModule,
     MatSliderModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [CookieService, AuthGuard],
   bootstrap: [AppComponent]

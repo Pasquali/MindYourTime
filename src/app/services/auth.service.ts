@@ -14,7 +14,6 @@ export class AuthService {
   authed: boolean;
   apiUrl = environment.apiUrl;
 
-
   loggedin$(): Observable<any> {
     return this.loggedinStream.asObservable();
   }

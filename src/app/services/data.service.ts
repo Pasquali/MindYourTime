@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class DataService {
   apiUrl = environment.apiUrl;
+
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   uploadTime(time, breaths, id = null) {

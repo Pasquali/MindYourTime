@@ -1,13 +1,16 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { style, animate, AnimationBuilder } from '@angular/animations';
 import { DataService } from '../services/data.service';
+
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css']
 })
-export class TimerComponent implements AfterViewInit {
+export class TimerComponent implements AfterViewInit, OnDestroy {
   @ViewChild('el') el: ElementRef;
   timer; // the timeout object
   uploadId;
@@ -28,6 +31,9 @@ export class TimerComponent implements AfterViewInit {
   secondCount = 0; // counts 1 for each .1 of a second once it hit 10 it increments the seconds variable
   initalUpload = true;
   player;
+
+
+  private ngUnsubscribe: Subject<any> = new Subject();
 
   constructor(private builder: AnimationBuilder, private data: DataService) { }
 
@@ -94,11 +100,16 @@ export class TimerComponent implements AfterViewInit {
   }
   uploadTime() {
     this.data.uploadTime(this.recordedSeconds, this.recordedBreathCount, this.uploadId)
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(res => {
           this.uploadId = res.id;
       });
   }
   ngAfterViewInit() {
     this.animate();
+  }
+  ngOnDestroy(): any {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

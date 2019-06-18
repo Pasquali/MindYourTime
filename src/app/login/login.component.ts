@@ -1,15 +1,17 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { AnimationBuilder, animate, style } from '@angular/animations';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent implements AfterViewInit, OnDestroy {
   @ViewChild('errorText') errorText: ElementRef;
     error = '';
   private player;
@@ -19,6 +21,8 @@ export class LoginComponent implements AfterViewInit {
 
   loginForm: FormGroup;
   showSpinner = false;
+
+  private ngUnsubscribe: Subject<any> = new Subject();
 
   constructor(private auth: AuthService, public router: Router, private fb: FormBuilder,
     private builder: AnimationBuilder) {
@@ -55,6 +59,7 @@ export class LoginComponent implements AfterViewInit {
   login(credentials) {
     this.showSpinner = true;
     this.auth.login(credentials)
+      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(res => {
         this.showSpinner = false;
         if (res.auth) {
@@ -68,5 +73,8 @@ export class LoginComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.animate();
   }
-
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+  }
 }

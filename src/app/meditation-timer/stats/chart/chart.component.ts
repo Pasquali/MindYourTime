@@ -7,7 +7,7 @@ import { Chart } from 'angular-highcharts';
   styleUrls: ['./chart.component.css']
 })
 export class ChartComponent implements OnInit, AfterViewInit {
-  @Input() data : Array<any>;
+  @Input() data: Array<any>;
   @ViewChild('canvas') canvas: ElementRef;
   chart;
   // datad = [20, 10, 15, 12, 10, 0, 5];
@@ -19,7 +19,6 @@ export class ChartComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log(this.data)
     let day: number = this.today.getDay();
     if (day === 6) {
       day = 0;

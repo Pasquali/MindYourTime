@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="chart" *ngIf="ready">
-    <app-chart [data]="breathPointsPerDay"></app-chart>
+<div class="container" *ngIf="ready">
+  <div class="chart">
+    <app-chart [data]="statObject.breathPointsPerDay"></app-chart>
   </div>
   <div class="cards">
-    <div *ngIf="totalBreaths > 0" class="flex">
+    <div class="flex">
       <mat-card>
         <div class="totalItem">
-          {{ todaysBreathPounts }}
+          {{ statObject.todaysBreathPounts }}
         </div>
         <div class="totalText">
           Breaths Taken Today
@@ -15,7 +15,7 @@
       <span class="fill-remaining-space"></span>      
       <mat-card> 
         <div class="totalItem">
-          {{ todaysTime }}          
+          {{ statObject.todaysTime }}          
         </div>
         <div class="totalText">
           Total Time Today
@@ -25,7 +25,7 @@
     <div class="flex">
       <mat-card>
         <div class="totalItem">
-          {{ totalBreaths }}
+          {{ statObject.totalBreaths }}
         </div>
         <div class="totalText">
           Total Breaths Taken
@@ -34,7 +34,7 @@
       <span class="fill-remaining-space"></span>
       <mat-card>
         <div class="totalItem">
-            {{ totalTime }}
+            {{ statObject.totalTime }}
         </div>
         <div class="totalText">
             Total Time Meditating

@@ -3,6 +3,7 @@ import { DataService } from '../../services/data.service';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Stats } from '../../shared/models/stats.model';
 
 @Component({
   selector: 'app-stats',
@@ -10,12 +11,8 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit, OnDestroy {
-  totalTime;
-  totalBreaths;
-  breathPointsPerDay;
   ready = false;
-  todaysBreathPounts;
-  todaysTime;
+  statObject: Stats;
 
   private ngUnsubscribe: Subject<any> = new Subject();
 
@@ -25,11 +22,7 @@ export class StatsComponent implements OnInit, OnDestroy {
     this.data.getTotalValues()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(res => {
-        this.todaysBreathPounts = res.todaysBreathPounts;
-        this.todaysTime = res.todaysTime;
-        this.totalTime = res.totalTime;
-        this.totalBreaths = res.totalBreaths;
-        this.breathPointsPerDay = res.breathPointsPerDay;
+        this.statObject = res;
         this.ready = true;
       });
   }

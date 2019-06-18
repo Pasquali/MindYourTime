@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
+import { Response } from '@angular/http';
+import { map } from 'rxjs/operators';
+import { Stats } from '../shared/models/stats.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +20,6 @@ export class DataService {
   }
   getTotalValues() {
     const url = this.apiUrl + '/api/timer/total-time';
-    return this.http.get<any>(url, {withCredentials: true});
+    return this.http.get<Stats>(url, {withCredentials: true});
   }
 }

@@ -14,6 +14,8 @@ export class StatsComponent implements OnInit, OnDestroy {
   totalBreaths;
   breathPointsPerDay;
   ready = false;
+  todaysBreathPounts;
+  todaysTime;
 
   private ngUnsubscribe: Subject<any> = new Subject();
 
@@ -23,6 +25,8 @@ export class StatsComponent implements OnInit, OnDestroy {
     this.data.getTotalValues()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(res => {
+        this.todaysBreathPounts = res.todaysBreathPounts;
+        this.todaysTime = res.todaysTime;
         this.totalTime = res.totalTime;
         this.totalBreaths = res.totalBreaths;
         this.breathPointsPerDay = res.breathPointsPerDay;

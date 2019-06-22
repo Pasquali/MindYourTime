@@ -30,7 +30,7 @@ import { ChartComponent } from './meditation-timer/stats/chart/chart.component';
 import { RegisterComponent } from './register/register.component';
 
 import { environment } from '../environments/environment';
-import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuard } from './shared/services/auth-guard.service';
 import { routing } from './app.routing';
 
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';

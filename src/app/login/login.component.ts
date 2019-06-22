@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { AnimationBuilder, animate, style } from '@angular/animations';
 import { takeUntil } from 'rxjs/operators';

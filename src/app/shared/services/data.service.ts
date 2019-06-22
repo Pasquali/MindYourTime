@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Response } from '@angular/http';
 import { map } from 'rxjs/operators';
-import { Stats } from '../shared/models/stats.model';
+import { Stats } from '../models/stats.model';
 import { Observable } from 'rxjs';
 
 @Injectable({

@@ -5,7 +5,7 @@ import { TimerComponent } from './meditation-timer/timer.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { StatsComponent } from './meditation-timer/stats/stats.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuard } from './shared/services/auth-guard.service';
 
 const appRoutes: Routes = [{
     path: '',

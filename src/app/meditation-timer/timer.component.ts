@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { style, animate, AnimationBuilder } from '@angular/animations';
-import { DataService } from '../services/data.service';
-import {TimerService} from '../services/timer.service';
+import { DataService } from '../shared/services/data.service';
+import {TimerService} from '../shared/services/timer.service';
 
 import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';

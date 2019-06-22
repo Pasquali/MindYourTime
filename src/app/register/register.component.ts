@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../shared/services/auth.service';
 import { PasswordValidation } from './password-validation';
 import { AnimationBuilder, style, animate } from '@angular/animations';
 import { Router } from '@angular/router';

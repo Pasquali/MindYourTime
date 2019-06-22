@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { Response } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { Stats } from '../shared/models/stats.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class DataService {
     const url = this.apiUrl + '/api/timer/upload-time';
     return this.http.post<any>(url, {time: time, breaths: breaths, id: id}, {withCredentials: true});
   }
-  getTotalValues() {
+  getTotalValues(): Observable<Stats> {
     const url = this.apiUrl + '/api/timer/total-time';
     return this.http.get<Stats>(url, {withCredentials: true});
   }

@@ -1,12 +1,12 @@
-<div class="container" *ngIf="ready">
+<div class="container" *ngIf="statObject | async as stat">
   <div class="chart">
-    <app-chart [data]="statObject.breathPointsPerDay"></app-chart>
+    <app-chart [data]="stat.breathPointsPerDay"></app-chart>
   </div>
   <div class="cards">
     <div class="flex">
       <mat-card>
         <div class="totalItem">
-          {{ statObject.todaysBreathPounts }}
+          {{ stat.todaysBreathPounts}}
         </div>
         <div class="totalText">
           Breaths Taken Today
@@ -15,7 +15,7 @@
       <span class="fill-remaining-space"></span>      
       <mat-card> 
         <div class="totalItem">
-          {{ statObject.todaysTime }}          
+          {{ stat.todaysTime}}          
         </div>
         <div class="totalText">
           Total Time Today
@@ -25,7 +25,7 @@
     <div class="flex">
       <mat-card>
         <div class="totalItem">
-          {{ statObject.totalBreaths }}
+          {{ stat.totalBreaths}}
         </div>
         <div class="totalText">
           Total Breaths Taken
@@ -34,7 +34,7 @@
       <span class="fill-remaining-space"></span>
       <mat-card>
         <div class="totalItem">
-            {{ statObject.totalTime }}
+            {{ stat.totalTime}}
         </div>
         <div class="totalText">
             Total Time Meditating

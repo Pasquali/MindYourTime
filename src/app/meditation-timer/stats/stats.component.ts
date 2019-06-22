@@ -1,8 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
 
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Stats } from '../../shared/models/stats.model';
 
 @Component({
@@ -10,26 +9,13 @@ import { Stats } from '../../shared/models/stats.model';
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.css']
 })
-export class StatsComponent implements OnInit, OnDestroy {
-  ready = false;
-  statObject: Stats;
-
-  private ngUnsubscribe: Subject<any> = new Subject();
+export class StatsComponent implements OnInit {
+  statObject: Observable<Stats>;
 
   constructor(private data: DataService) {}
 
   ngOnInit() {
-    this.data.getTotalValues()
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(res => {
-        this.statObject = res;
-        this.ready = true;
-      });
-  }
-
-  ngOnDestroy(): any {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.statObject = this.data.getTotalValues();
   }
 
 }

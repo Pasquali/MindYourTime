@@ -1,4 +1,4 @@
-<app-timer-progress *ngIf="!results" [time]="timerPosition"></app-timer-progress>
+<app-timer-progress *ngIf="!results && timerObject | async as timerObj" [time]="timerObj.timerPosition"></app-timer-progress>
 <div class="flex" *ngIf="!results">
     <span class="fill-remaining-space"></span>
     <mat-icon class="person">person</mat-icon>
@@ -6,12 +6,12 @@
     <span class="fill-remaining-space"></span>
 </div>
 
-<div class="container" *ngIf="!results">
-    <div class="time">{{ minutes }}:{{ seconds | number: '2.0-0' }}</div>
+<div class="container" *ngIf="!results && timerObject | async as timerObj">
+    <div class="time">{{ timerObj.formattedTime }}</div>
     <div class="time">Minutes Complete</div>
-    <button *ngIf="!running && !finished" class="playButton" mat-raised-button (click)="player.play(); startTimer(); running = true">Start<mat-icon>play_arrow</mat-icon></button>
-    <button *ngIf="running && !finished" class="playButton" mat-raised-button (click)="player.pause(); pauseTimer(); running = false; uploadTime()">Pause<mat-icon>pause</mat-icon></button>
-    <button *ngIf="finished" class="playButton" mat-raised-button [routerLink]="['/stats']" [queryParams]="{minutes: minutes, seconds: seconds, total_seconds: currentTime}">Go to Results</button>
+    <button *ngIf="!running && !finished" class="playButton" mat-raised-button (click)="player.play(); timer.start(); running = true">Start<mat-icon>play_arrow</mat-icon></button>
+    <button *ngIf="running && !finished" class="playButton" mat-raised-button (click)="player.pause(); timer.pause(); running = false">Pause<mat-icon>pause</mat-icon></button>
+    <button *ngIf="finished" class="playButton" mat-raised-button [routerLink]="['/stats']">Go to Results</button>
     <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -36,7 +36,7 @@
                 thumbLabel
                 class="slider"
                 [max]="10"
-                [min]="2"
+                [min]="1"
                 [tickInterval]="1"
                 (input)="changeTime($event)"
                 [(value)]="sessionLength">

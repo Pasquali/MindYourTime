@@ -19,22 +19,21 @@ export class RegisterComponent implements AfterViewInit {
   blinkCount = 0;
 
   showSpinner = false;
-  registerForm: FormGroup;
+
+  registerForm = this.fb.group({
+    'first_name' : [null, Validators.required],
+    'last_name' : [null, Validators.required],
+    'company' : [null, Validators.required],
+    'email' : [null, [Validators.required, Validators.email]],
+    'password' : [null, Validators.required],
+    'confirm_password' : [null, Validators.required],
+  }, {
+    validator: PasswordValidation.MatchPassword
+  });
 
   constructor(private fb: FormBuilder, private auth: AuthService,
-    private builder: AnimationBuilder, private router: Router) {
-    this.registerForm = this.fb.group({
-      'first_name' : [null, Validators.required],
-      'last_name' : [null, Validators.required],
-      'company' : [null, Validators.required],
-      'email' : [null, [Validators.required, Validators.email]],
-      'password' : [null, Validators.required],
-      'confirm_password' : [null, Validators.required],
-    }, {
-      validator: PasswordValidation.MatchPassword
-    });
+    private builder: AnimationBuilder, private router: Router) { console.log(this. registerForm.controls); }
 
-  }
   private animate() {
     const factory = this.builder.build([
       style({opacity: this.currentOpacity}),

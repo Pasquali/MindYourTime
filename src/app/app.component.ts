@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   authed;
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService) {
     this.auth.loggedin$()
       .subscribe(res => {
         this.authed = res;
@@ -17,7 +17,6 @@ export class AppComponent {
   }
 
   logout() {
-    this.router.navigate(['/login']);
     this.auth.logout();
   }
 }

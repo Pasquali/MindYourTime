@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CanDeactivate,
-         ActivatedRouteSnapshot,
-         RouterStateSnapshot } from '@angular/router';
+import { CanDeactivate } from '@angular/router';
 
-import { TimerComponent } from '../../meditation-timer/timer.component';
 import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
@@ -37,11 +34,5 @@ export class CanDeactivateGuard implements CanDeactivate<boolean> {
       width: '250px',
       data: {message: `You currently have a session in progress. Would you like to continue?`}
     });
-
-    this.dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-            return true;
-        }
-    });
-}
+  }
 }

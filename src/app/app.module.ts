@@ -39,7 +39,7 @@ import { ChartModule } from 'angular-highcharts';
 import { LeavingWarningComponent } from './meditation-timer/leaving-warning/leaving-warning.component';
 import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CanDeactivateGuard } from './shared/services/canDeactivatae-guard.service';
+import { CanDeactivateGuard } from './shared/services/canDeactivate-guard.service';
 
 export function jwtOptionsFactory(cookieService) {
   return {

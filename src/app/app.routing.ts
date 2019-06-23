@@ -6,7 +6,7 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { StatsComponent } from './meditation-timer/stats/stats.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './shared/services/auth-guard.service';
-import { CanDeactivateGuard } from './shared/services/canDeactivatae-guard.service';
+import { CanDeactivateGuard } from './shared/services/canDeactivate-guard.service';
 
 const appRoutes: Routes = [{
     path: '',

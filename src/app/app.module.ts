@@ -39,6 +39,7 @@ import { ChartModule } from 'angular-highcharts';
 import { LeavingWarningComponent } from './meditation-timer/leaving-warning/leaving-warning.component';
 import { DialogComponent } from './meditation-timer/leaving-warning/dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CanDeactivateGuard } from './shared/services/canDeactivatae-guard.service';
 
 export function jwtOptionsFactory(cookieService) {
   return {
@@ -94,7 +95,7 @@ export function jwtOptionsFactory(cookieService) {
     MatExpansionModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [CookieService, AuthGuard],
+  providers: [CookieService, AuthGuard, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

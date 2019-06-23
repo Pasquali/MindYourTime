@@ -5,7 +5,8 @@
   <div class="message">
     {{ data.message }}
   </div>
-  <div *ngFor="let option of data.options">
-    <button class="playButton" mat-raised-button>{{ option }}</button>
+  <div>
+    <button class="playButton" [mat-dialog-close]="true" mat-raised-button>Continue</button>
+    <button class="playButton" (click)="onNoClick()" mat-raised-button>Cancel</button>
   </div>
 </div>

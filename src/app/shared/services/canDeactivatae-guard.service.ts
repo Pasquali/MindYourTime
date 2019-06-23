@@ -5,7 +5,7 @@ import { CanDeactivate,
          RouterStateSnapshot } from '@angular/router';
 
 import { TimerComponent } from '../../meditation-timer/timer.component';
-import { DialogComponent } from '../../meditation-timer/leaving-warning/dialog/dialog.component';
+import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 
@@ -29,7 +29,7 @@ export class CanDeactivateGuard implements CanDeactivate<boolean> {
     );
   }
   openDialog(): void {
-    this.dialogRef = this.dialog.open(DialogComponent, {
+    this.dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
       data: {message: `You currently have a session in progress. Would you like to continue?`}
     });

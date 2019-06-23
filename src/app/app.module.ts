@@ -37,7 +37,7 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
 import { ChartModule } from 'angular-highcharts';
 import { LeavingWarningComponent } from './meditation-timer/leaving-warning/leaving-warning.component';
-import { DialogComponent } from './meditation-timer/leaving-warning/dialog/dialog.component';
+import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CanDeactivateGuard } from './shared/services/canDeactivatae-guard.service';
 
@@ -60,10 +60,10 @@ export function jwtOptionsFactory(cookieService) {
     AccountSettingsComponent,
     RegisterComponent,
     LeavingWarningComponent,
-    DialogComponent
+    ConfirmationDialogComponent
   ],
   entryComponents: [
-    DialogComponent
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,

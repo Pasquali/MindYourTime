@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from './dialog/dialog.component';
+import { ConfirmationDialogComponent } from '../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { Router } from '@angular/router';
 
 /**
@@ -15,7 +15,7 @@ export class LeavingWarningComponent {
   constructor(public dialog: MatDialog, private router: Router) {}
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '250px',
       data: {message: `You currently have a session in progress. Would you like to continue?`}
     });

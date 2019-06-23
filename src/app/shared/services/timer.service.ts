@@ -6,13 +6,14 @@ import { DataService } from './data.service';
   providedIn: 'root'
 })
 export class TimerService {
-  private timerObject$ = new BehaviorSubject<Object>({
+  defaultState = {
     formattedTime: '0:00',
     timerPosition: 0,
     finished: false,
     sessionLength: 5,
     breathTimeSetting: 5
-  });
+  };
+  private timerObject$ = new BehaviorSubject<Object>(this.defaultState);
 
   secondCount = 0;
   seconds = 0;
@@ -25,6 +26,7 @@ export class TimerService {
   currentTimerObject;
   uploadId;
   timer;
+  started = false;
 
   constructor(private data: DataService) {
     this.getTimerObject()
@@ -35,6 +37,7 @@ export class TimerService {
     this.uploadTime();
   }
   start(): void {
+    this.started = true;
     this.timer = setTimeout(() =>
       this.incrementTimerVariables(), 100);
   }
@@ -84,7 +87,9 @@ export class TimerService {
   getTimerObject() {
     return this.timerObject$;
   }
-
+  getStatus() {
+    return this.started;
+  }
   setSessionLength(length: number) {
     this.timerObject$.next({...this.currentTimerObject, sessionLength: length});
   }
@@ -96,6 +101,19 @@ export class TimerService {
       .subscribe(res => {
           this.uploadId = res.id;
       });
+  }
+  resetTimer() {
+    this.timerObject$.next(this.defaultState);
+    this.secondCount = 0;
+    this.seconds = 0;
+    this.minutes = 0;
+    this.currentTime = 0;
+    this.recordedSeconds = 0;
+    this.sessionLength = 5;
+    this.breathCount = 0;
+    this.uploadId = null;
+    this.timer = null;
+    this.started = false;
   }
 
 }

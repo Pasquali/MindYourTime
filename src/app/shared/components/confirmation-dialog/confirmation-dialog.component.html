@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="circle">
+    <img class="myt-logo" src='../../../../assets/icons/icon-512x512.png' />
+  </div>
+  <div class="message">
+    {{ data.message }}
+  </div>
+  <div>
+    <button class="playButton" [mat-dialog-close]="true" mat-raised-button>Continue</button>
+    <button class="playButton" (click)="onNoClick()" mat-raised-button>Cancel</button>
+  </div>
+</div>

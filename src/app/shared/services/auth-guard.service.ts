@@ -1,6 +1,7 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthGuard {
@@ -8,7 +9,7 @@ export class AuthGuard {
   constructor(public authService: AuthService, private router: Router) {
   }
 
-  canActivate(): Promise<boolean> | boolean  {
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean  {
     this.authenticated = this.authService.loggedIn;
     if (this.authenticated === 'true' || this.authenticated === true) {
       this.authService.loggedinStream.next(true);

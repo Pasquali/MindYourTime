@@ -36,6 +36,10 @@ import { routing } from './app.routing';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
 import { ChartModule } from 'angular-highcharts';
+import { LeavingWarningComponent } from './meditation-timer/leaving-warning/leaving-warning.component';
+import { ConfirmationDialogComponent } from './shared/components/confirmation-dialog/confirmation-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CanDeactivateGuard } from './shared/services/canDeactivate-guard.service';
 
 export function jwtOptionsFactory(cookieService) {
   return {
@@ -54,7 +58,12 @@ export function jwtOptionsFactory(cookieService) {
     StatsComponent,
     ChartComponent,
     AccountSettingsComponent,
-    RegisterComponent
+    RegisterComponent,
+    LeavingWarningComponent,
+    ConfirmationDialogComponent
+  ],
+  entryComponents: [
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +83,7 @@ export function jwtOptionsFactory(cookieService) {
     }),
     routing,
     MatToolbarModule,
+    MatDialogModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
@@ -85,7 +95,7 @@ export function jwtOptionsFactory(cookieService) {
     MatExpansionModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [CookieService, AuthGuard],
+  providers: [CookieService, AuthGuard, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

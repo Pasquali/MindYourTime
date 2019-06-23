@@ -23,7 +23,7 @@ export class RegisterComponent implements AfterViewInit {
 
   constructor(private fb: FormBuilder, private auth: AuthService,
     private builder: AnimationBuilder, private router: Router) {
-    this.registerForm = fb.group({
+    this.registerForm = this.fb.group({
       'first_name' : [null, Validators.required],
       'last_name' : [null, Validators.required],
       'company' : [null, Validators.required],

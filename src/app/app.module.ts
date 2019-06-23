@@ -36,6 +36,9 @@ import { routing } from './app.routing';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie-service';
 import { ChartModule } from 'angular-highcharts';
+import { LeavingWarningComponent } from './meditation-timer/leaving-warning/leaving-warning.component';
+import { DialogComponent } from './meditation-timer/leaving-warning/dialog/dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 export function jwtOptionsFactory(cookieService) {
   return {
@@ -54,7 +57,12 @@ export function jwtOptionsFactory(cookieService) {
     StatsComponent,
     ChartComponent,
     AccountSettingsComponent,
-    RegisterComponent
+    RegisterComponent,
+    LeavingWarningComponent,
+    DialogComponent
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +82,7 @@ export function jwtOptionsFactory(cookieService) {
     }),
     routing,
     MatToolbarModule,
+    MatDialogModule,
     MatIconModule,
     MatButtonModule,
     MatMenuModule,

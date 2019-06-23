@@ -13,7 +13,7 @@ import { Subject } from 'rxjs';
 })
 export class LoginComponent implements AfterViewInit, OnDestroy {
   @ViewChild('errorText') errorText: ElementRef;
-    error = '';
+  error = '';
   private player;
   currentOpacity = '0';
   targetOpacity = '1';
@@ -26,11 +26,11 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
 
   constructor(private auth: AuthService, public router: Router, private fb: FormBuilder,
     private builder: AnimationBuilder) {
-  this.loginForm = fb.group({
-    'email' : [null, Validators.required],
-    'password' : [null, Validators.required],
-  });
-      router.navigate(['/timer']);
+    this.loginForm = this.fb.group({
+      'email' : [null, Validators.required],
+      'password' : [null, Validators.required],
+    });
+    router.navigate(['/timer']);
   }
 
   private animate() {

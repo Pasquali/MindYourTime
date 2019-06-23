@@ -6,13 +6,14 @@ import { DataService } from './data.service';
   providedIn: 'root'
 })
 export class TimerService {
-  private timerObject$ = new BehaviorSubject<Object>({
+  defaultState = {
     formattedTime: '0:00',
     timerPosition: 0,
     finished: false,
     sessionLength: 5,
     breathTimeSetting: 5
-  });
+  };
+  private timerObject$ = new BehaviorSubject<Object>(this.defaultState);
 
   secondCount = 0;
   seconds = 0;

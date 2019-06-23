@@ -60,12 +60,11 @@ export class AuthService {
     return this.cookieService.get('access_token');
   }
   logout() {
-    const url = this.apiUrl + '/api/auth/logout';
-    this.loggedinStream.next(false);
-    this.cookieService.set('access_token', null);
-    this.http.post(url, {}, {withCredentials: true})
-      .subscribe(res => {
+    this.router.navigate(['/login'])
+      .then(() => {
         this.router.navigate(['/login']);
+        this.loggedinStream.next(false);
+        this.cookieService.set('access_token', null);
       });
   }
 }

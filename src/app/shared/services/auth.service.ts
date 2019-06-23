@@ -5,6 +5,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { map } from 'rxjs/operators';
 import { ReplaySubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { ConfirmationDialogComponent } from '../components/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { TimerService } from './timer.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +16,14 @@ export class AuthService {
   loggedinStream: ReplaySubject<any> = new ReplaySubject();
   authed: boolean;
   apiUrl = environment.apiUrl;
+  dialogRef;
 
   loggedin$(): Observable<any> {
     return this.loggedinStream.asObservable();
   }
 
-  constructor(private router: Router, private http: HttpClient,
-    private cookieService: CookieService) {
+  constructor(private router: Router, private http: HttpClient, private timerService: TimerService,
+    private cookieService: CookieService, public dialog: MatDialog) {
   }
 
   login(credentials) {
@@ -60,11 +64,20 @@ export class AuthService {
     return this.cookieService.get('access_token');
   }
   logout() {
-    this.router.navigate(['/login'])
-      .then(() => {
-        this.router.navigate(['/login']);
-        this.loggedinStream.next(false);
-        this.cookieService.set('access_token', null);
+      this.openDialog();
+      this.dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+            this.timerService.resetTimer();
+            this.router.navigate(['/login']);
+            this.loggedinStream.next(false);
+            this.cookieService.set('access_token', null);
+        }
       });
+  }
+  openDialog(): void {
+    this.dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '250px',
+      data: {message: `You are about to logout. Would you like to continue?`}
+    });
   }
 }

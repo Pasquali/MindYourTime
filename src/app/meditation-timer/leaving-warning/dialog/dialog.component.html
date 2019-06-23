@@ -1,3 +1,11 @@
-<p>
-  leaving-warning works!
-</p>
+<div class="container">
+  <div class="circle">
+    <img class="myt-logo" src='../../../../assets/icons/icon-512x512.png' />
+  </div>
+  <div class="message">
+    {{ data.message }}
+  </div>
+  <div *ngFor="let option of data.options">
+    <button class="playButton" mat-raised-button>{{ option }}</button>
+  </div>
+</div>

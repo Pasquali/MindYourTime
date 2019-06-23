@@ -64,3 +64,8 @@ input:-webkit-autofill {
     color: gray;
     outline: 0;
 }
+.mat-dialog-container {
+    background-color: #303030;
+    color: gray;
+    overflow: initial !important;
+}

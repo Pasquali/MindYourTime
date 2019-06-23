@@ -2,11 +2,6 @@ import { Component, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-
 /**
  * @title Dialog Overview
  */
@@ -16,21 +11,17 @@ export interface DialogData {
   styleUrls: ['./leaving-warning.component.css']
 })
 export class LeavingWarningComponent {
-
-  animal: string;
-  name: string;
-
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '250px',
-      data: {name: this.name, animal: this.animal}
+      data: {message: `You currently have a session in progress. Would you like to continue?`, options: ['Continue', 'Cancel']},
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      // this.animal = result;
     });
   }
 

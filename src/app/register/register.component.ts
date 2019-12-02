@@ -13,13 +13,54 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements AfterViewInit {
   @ViewChild('errorText') errorText: ElementRef;
   error = '';
-  private player;
+  player;
   currentOpacity = '0';
   targetOpacity = '1';
   blinkCount = 0;
-
+  playing = false;
   showSpinner = false;
-
+  formObject = {
+    formGroup: 'registerForm',
+    formControlArray: [
+      {
+        style: '50%',
+        placeholder: 'First Name',
+        formControlName: 'first_name'
+      },
+      {
+        style: '50%',
+        placeholder: 'Last Name',
+        formControlName: 'last_name'
+      }
+      ,
+      {
+        style: '100%',
+        placeholder: 'Company',
+        formControlName: 'company'
+      }
+      ,
+      {
+        style: '100%',
+        placeholder: 'Email Address',
+        formControlName: 'email',
+        type: 'email'
+      }
+      ,
+      {
+        style: '50%',
+        placeholder: 'Password',
+        formControlName: 'password',
+        type: 'password'
+      }
+      ,
+      {
+        style: '50%',
+        placeholder: 'Confirm Password',
+        formControlName: 'confirm_password',
+        type: 'password'
+      }
+    ]
+  };
   registerForm = this.fb.group({
     'first_name' : [null, Validators.required],
     'last_name' : [null, Validators.required],
@@ -27,12 +68,11 @@ export class RegisterComponent implements AfterViewInit {
     'email' : [null, [Validators.required, Validators.email]],
     'password' : [null, Validators.required],
     'confirm_password' : [null, Validators.required],
-  }, {
+    }, {
     validator: PasswordValidation.MatchPassword
   });
-
   constructor(private fb: FormBuilder, private auth: AuthService,
-    private builder: AnimationBuilder, private router: Router) { console.log(this. registerForm.controls); }
+    private builder: AnimationBuilder, private router: Router) {}
 
   private animate() {
     const factory = this.builder.build([
@@ -41,7 +81,9 @@ export class RegisterComponent implements AfterViewInit {
     ]);
 
     this.player = factory.create(this.errorText.nativeElement, {});
-
+    this.player.onStart(() => {
+      this.playing = true;
+    });
     this.player.onDone(() => {
       const temp = this.currentOpacity;
       this.currentOpacity = this.targetOpacity;
@@ -51,12 +93,13 @@ export class RegisterComponent implements AfterViewInit {
       if (this.blinkCount >= 2) {
         this.blinkCount = 0;
         this.player.pause();
+        this.playing = false;
       } else {
         this.player.play();
       }
     });
   }
-  register(formValue) {
+  submit(formValue) {
     this.showSpinner = true;
     this.auth.registerUser(formValue)
       .subscribe(res => {
@@ -68,6 +111,16 @@ export class RegisterComponent implements AfterViewInit {
           this.router.navigate(['/timer']);
         }
       });
+  }
+  matchingPasswordCheck() {
+    if (this.registerForm.controls.confirm_password.pristine === false &&
+      this.registerForm.controls.confirm_password.errors !== null) {
+      this.error = 'Password does not match';
+      this.player.play();
+      return true;
+    } else {
+      return false;
+    }
   }
   ngAfterViewInit() {
     this.animate();

@@ -3,33 +3,19 @@
   <mat-card class="flex register-card">
     <button mat-button routerLink="/login"><mat-icon>arrow_back</mat-icon>Back to Login</button>
     <div class="register-form">
-      <form  [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
-          <mat-form-field style="width: 50%">
-            <input matInput placeholder="First Name" formControlName="first_name">
+      <form [formGroup]=registerForm (ngSubmit)="submit(registerForm.value)">
+        <ng-container  *ngFor="let formControl of formObject.formControlArray">
+          <mat-form-field [ngStyle]="{'width': formControl.style}">
+            <input matInput type={{formControl.type}} placeholder={{formControl.placeholder}} formControlName={{formControl.formControlName}}>
           </mat-form-field>
-          <mat-form-field style="width: 50%">
-            <input matInput placeholder="Last Name" formControlName="last_name">
-          </mat-form-field>
-          <mat-form-field style="width: 100%">
-            <input matInput placeholder="Company" formControlName="company">
-          </mat-form-field>
-          <br>
-          <mat-form-field style="width: 100%">
-            <input matInput type="email" placeholder="Email Address" formControlName="email">
-          </mat-form-field>
-          <br>
-          <mat-form-field style="width: 50%">
-            <input matInput type="password" placeholder="Password" formControlName="password">
-          </mat-form-field>
-          <mat-form-field style="width: 50%">
-            <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password">
-          </mat-form-field>
-          <br>
+        </ng-container>
           <div class="flex">
-            <span class="error-gray">{{error}}</span>
-            <span #errorText class="error-white">{{error}}</span>
-            <div class="alert" *ngIf="registerForm.controls['confirm_password'].errors?.MatchPassword && 
-            registerForm.controls['confirm_password'].pristine == false">Password does not match</div>
+            <!-- <span class="password error-gray" *ngIf="registerForm.controls['confirm_password'].errors?.MatchPassword && 
+            registerForm.controls['confirm_password'].pristine == false">Password does not match</span>
+            <span #errorText class="password error-white" *ngIf="registerForm.controls['confirm_password'].errors?.MatchPassword && 
+            registerForm.controls['confirm_password'].pristine == false">Password does not match</span> -->
+            <span class="alert error-gray">{{error}}</span>
+            <span #errorText class="alert error-white">{{error}}</span>
             <span class="fill-remaining-space"></span>
             <button mat-raised-button class="register-btn" type="submit" [disabled]="!registerForm.valid">
               <span>Register</span>
